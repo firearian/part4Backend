@@ -133,6 +133,10 @@ echo '<html lang="en">
         </div>
     </div>
     </form>
+
+    <button id="submitButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+     Submit
+    </button>
     
     <img id="UoaLogo" src="/Pictures/uoaLogo.jpg" alt="UoaLogo"/>
     

@@ -18,6 +18,12 @@ $results = $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 //<script type="text/javascript" src="Active.js"></script>
 
+$data = $_SERVER['QUERY_STRING'];
+
+$stmt = $pdo->prepare("SELECT time FROM qtests WHERE id='$data'");
+$results = $stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
 
 
@@ -56,20 +62,20 @@ echo '
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <p id="LoggedInAs"> You are logged in as _________ </p>
+        <p id="LoggedInAs"> You are logged in as ' . $_SESSION['username'] . ' </p>
       </nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="LectureMM.html">Main Menu</a>    
-      <a class="mdl-navigation__link" href="Login.html">Logout</a>
+      <a class="mdl-navigation__link" href="LectureMM.php">Main Menu</a>    
+      <a class="mdl-navigation__link" href="logout.php">Logout</a>
     </nav>
   </div>
 </div>
 
 <div id="loginTag">   
-    <p> Login Tag </p> 
+    <p id="sessiontag"></p> 
 </div>    
     
 <div id="clock">
@@ -97,11 +103,19 @@ dg[8]=new Image();dg[8].src="/Clock/dg8.gif";
 dg[9]=new Image();dg[9].src="/Clock/dg9.gif";
 var t;
 var tt;
-var end = false;
-var d = 1;
+var d = ' . $result['time'] . ';
 var hr = d / 60;
 var mn = d % 60;
-var se = 00;
+var se = 0;
+
+function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  document.getElementById("sessiontag").innerHTML = text;
+}
 
 function dotime() {
 
@@ -143,6 +157,7 @@ function getSrc(digit,index){
 }
 
 window.onload=function() {
+    makeid();
     dotime();
     tt = setInterval(dotime, 10);
 }
@@ -154,6 +169,10 @@ window.onload=function() {
     
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="stopButton" type="button" onclick="reset()">
       Stop
+    </button>
+
+    <button class="mdl-button mdl-js-button mdl-button--raised" id="activateSession" type="submit">
+      ACTIVATE SESSION
     </button>
         
     <img id="UoaLogo" src="/Pictures/uoaLogo.jpg" alt="UoaLogo"/>
