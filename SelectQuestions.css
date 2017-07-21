@@ -1,0 +1,105 @@
+.mdl-layout-title{
+    left: 36.5%;
+    font-size: 200%;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    font-size: 20px;
+}
+
+.mdl-layout__header{
+    box-shadow: 0px 8px 8px grey;
+}
+
+#TestName {
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    width:20%;
+    text-align: center;
+    box-shadow: 0px 4px 2px grey;
+}
+
+#TestTime {
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    width:20%;
+    text-align: center;
+    box-shadow: 0px 4px 2px grey;
+}
+
+.topics{
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    width: 80%;
+}
+
+button.accordion {
+    background-color: lightgoldenrodyellow;
+    color: black;
+    cursor: pointer;
+    padding: 18px;
+    width: 90%;
+    border: 0.1%;
+    border-color: lightgrey;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.2s;
+    box-shadow: 0px 6px 4px grey;
+}
+
+button.accordion.active {
+    background-color: darkred;
+}
+
+button.accordion:after {
+    content: '\002B'; /* Unicode character for "plus" sign (+) */
+    color: black;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2212";  /* Unicode character for "minus" sign (-) */
+    color: black;
+}
+
+div.panel {
+    width:90%;
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    box-shadow: 0px 6px 4px grey;
+    border: 1px solid black;
+}
+
+.mdl-button {
+    left: 33%;
+    width: 25%;
+    text-align: center;
+    box-shadow: 0px 4px 5px grey;
+}
+
+table{
+    position: relative;
+    width: 100%;
+}
+
+#NoBorder{
+    width: 25%;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+#Border{
+    width: 25%;
+    text-align: center;
+    border:  1px solid black;
+}

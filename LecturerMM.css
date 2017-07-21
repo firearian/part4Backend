@@ -1,0 +1,78 @@
+
+.mdl-layout-title{
+    left: 45%;
+    font-size: 200%;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    font-size: 20px;
+}
+
+.mdl-layout__header{
+    box-shadow: 0px 6px 8px grey;
+}
+
+.mdl-button{
+    min-width: 200px;
+    color: white;
+}
+
+#CreateTest {
+    position: absolute;
+    top: 30%;
+    left: 45%;
+    background-color: darkred;
+    box-shadow: 0px 6px 5px grey;
+}
+
+#SavedTests {
+    position: absolute;
+    top: 37%;
+    left: 45%;
+    box-shadow: 0px 6px 5px grey;
+}
+
+#NewQuestion {
+    position: absolute;
+    top: 44%;
+    left: 45%;
+    box-shadow: 0px 6px 5px grey;
+}
+
+#SavedQuestions {
+    position: absolute;
+    top: 51%;
+    left: 45%;
+    box-shadow: 0px 6px 5px grey;
+}
+
+#Active {
+    position: absolute;
+    top: 58%;
+    left: 45%;
+    box-shadow: 0px 6px 5px grey;
+}
+
+#Statistics {
+    position: absolute;
+    top: 65%;
+    left: 45%;
+    box-shadow: 0px 6px 5px grey;
+}
+
+#FastestAnswers {
+    position: absolute;
+    top: 72%;
+    left: 45%;
+    box-shadow: 0px 6px 5px grey;
+}
+
+#UoaLogo {
+    position: absolute;
+    bottom: 0.2%;
+    left: 0.2%;
+    height: 8%;
+}

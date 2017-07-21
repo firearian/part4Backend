@@ -1,0 +1,78 @@
+#bg {
+    position: absolute;
+    top:0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+}
+
+#mainmenu {
+    position:absolute;
+    top: 0.5%;
+    left: 0.5%;
+    height: 10%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    top: 9%;
+    left: 0.5%;
+    min-width: 10%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+#dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    font-size: 20px;
+}
+
+#SavedQuestions {
+    position: absolute;
+    top: 12%;
+    left: 40%; 
+    height: 12%;
+}
+
+#NewQuestion {
+    position: absolute;
+    top: 27%;
+    left: 40%; 
+    height: 12%;
+}
+
+#Statistics {
+    position: absolute;
+    top: 42%;
+    left: 40%; 
+    height: 12%;
+}
+
+#CreateTest {
+    position: absolute;
+    top: 57%;
+    left: 40%; 
+    height: 12%;
+}
+
+#FastestAnswers {
+    position: absolute;
+    top: 72%;
+    left: 40%;
+    height: 12%;
+}
+
+#UoaLogo {
+    position: absolute;
+    top: 91.5%;
+    left: 0.5%; 
+    height: 8%;
+}

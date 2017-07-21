@@ -1,0 +1,133 @@
+.mdl-layout-title{
+    left: 41%;
+    font-size: 200%;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    font-size: 20px;
+}
+
+.mdl-layout__header{
+    box-shadow: 0px 8px 8px grey;  
+}
+
+#qNameTimeContainer{
+    position: absolute;
+    top: 11%;
+    left: 43%;
+    width: 17%;
+    height: 8%;
+}
+
+#qName p{
+    position: relative;
+    text-align: center;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+#NameTfield{
+    position: absolute;
+    top:40%;
+    left: 1%;
+    width:98%;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#qTypeContainer{
+    position: absolute;
+    top: 19%;
+    left: 43%;
+    width: 17%;
+    height: 4%;
+    box-shadow: 0px 1px 1px grey;
+}
+
+#qType{
+    position: absolute;
+    top:20%;
+    left: 2%;
+    font-size: 120%;
+    font-weight: bold;
+    text-align: center;
+}
+
+#qType p{
+    font-size: 100%;
+    font-weight: bold;
+
+}
+
+#qTypeSelect{
+    position: absolute;
+    top:20%;
+    right: 2%;
+}
+
+#qTopicContainer{
+    position: absolute;
+    top: 71%;
+    left: 40.5%;
+    width: 21%;
+    height: 5%;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#qTopic{
+    position: absolute;
+    top:30%;
+    left: 2%;
+    font-size: 120%;
+    font-weight: bold;
+    text-align: center;
+}
+
+#qTopic p{
+    font-size: 100%;
+    font-weight: bold;
+
+}
+
+#qTopicSelect{
+    position: absolute;
+    top:30%;
+    right: 2%;
+}
+
+#AnswerContainer{
+    position: absolute;
+    top: 77%;
+    left: 20%;
+    width: 65%;
+    height: 21%;
+    background-color: lightgreen;
+    box-shadow: 0px 8px 8px grey;
+}
+
+#AnswerTitle p{
+    text-align: center;
+    font-size: 130%;
+    font-weight: bold;
+}
+
+#AnswerSelect{
+    position: absolute;
+    top: 18%;
+    left: 41%;
+}
+
+#AnswerTextBox{
+    position: absolute;
+    top: 35%;
+    left: 0.5%;
+}
+
+#UoaLogo {
+    position: absolute;
+    bottom: 0.2%;
+    left: 0.2%; 
+    height: 8%;
+}
