@@ -18,12 +18,20 @@ $results = $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 //<script type="text/javascript" src="Active.js"></script>
 
-$data = $_SERVER['QUERY_STRING'];
-
 $stmt = $pdo->prepare("SELECT time FROM qtests WHERE id='$data'");
 $results = $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$id = "";
+$characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
+
+for ($i = 0; $i < 5; $i++) {
+    $rand = mt_rand(0, count($characters) - 1);
+    $id .= $characters[$rand];
+}
+
+$stmt = $pdo->prepare("UPDATE qtests SET active = :actives, pass = :ids  WHERE id='$data'");
+$stmt->execute(['actives' => 1, 'ids' => $id]);
 
 
 
@@ -75,7 +83,7 @@ echo '
 </div>
 
 <div id="loginTag">   
-    <p id="sessiontag"></p> 
+    <p id="sessiontag">' . $id . '</p>
 </div>    
     
 <div id="clock">
@@ -108,15 +116,6 @@ var hr = d / 60;
 var mn = d % 60;
 var se = 0;
 
-function makeid() {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (var i = 0; i < 5; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  document.getElementById("sessiontag").innerHTML = text;
-}
-
 function dotime() {
 
     document.hr1.src = getSrc(hr, 10);
@@ -132,7 +131,9 @@ function countdown() {
     if (hr < 1 && mn == 0 && se == 0) {
         clearInterval(tt);
         clearTimeout(t);
+        $.get("deactivate.php?' . $data . '");
     }
+
     if (mn === 0 && se === 0){
         hr--;
         mn = 59;
@@ -157,7 +158,6 @@ function getSrc(digit,index){
 }
 
 window.onload=function() {
-    makeid();
     dotime();
     tt = setInterval(dotime, 10);
 }
