@@ -19,7 +19,13 @@ $stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions");
 $results = $stmt->execute();
 
 
-echo '<html lang="en">
+
+
+
+
+echo '<!doctype html>
+
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>lecturer main menu</title>
@@ -32,17 +38,47 @@ echo '<html lang="en">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     
-
-     
-    
   <link rel="stylesheet" href="LecturerNewQuestion.css">
+  <script type="text/javascript">
+    function myFunction() {
+        if (document.getElementById("Typesel").value == "MC") {
+            document.getElementById("dynamicContentsTrueFalse").style.display = "none";
+            document.getElementById("AnswerTrueFalse").style.display = "none";
+            document.getElementById("AnswerContainer").style.display = "none";
+            document.getElementById("dynamicBlank").style.display = "none";
+            document.getElementById("DynamicAnswer").style.display = "none";
+            document.getElementById("dynamicContentsText").style.display = "none";
+            document.getElementById("dynamicContentsMultiChoice").style.display = "block";
+            document.getElementById("AnswerMultichoice").style.display = "block";
+        } else if (document.getElementById("Typesel").value == "Text") {
+            document.getElementById("dynamicContentsTrueFalse").style.display = "none";
+            document.getElementById("AnswerTrueFalse").style.display = "none";
+            document.getElementById("AnswerContainer").style.display = "block";
+            document.getElementById("dynamicContentsText").style.display = "block";
+            document.getElementById("dynamicBlank").style.display = "none";
+            document.getElementById("DynamicAnswer").style.display = "none";
+            document.getElementById("dynamicContentsMultiChoice").style.display = "none";
+            document.getElementById("AnswerMultichoice").style.display = "none";
+        }
+        else if (document.getElementById("Typesel").value == "TF"){
+            document.getElementById("dynamicContentsTrueFalse").style.display = "block";
+            document.getElementById("AnswerTrueFalse").style.display = "block";
+            document.getElementById("AnswerContainer").style.display = "none";
+            document.getElementById("dynamicBlank").style.display = "none";
+            document.getElementById("DynamicAnswer").style.display = "none";
+            document.getElementById("dynamicContentsText").style.display = "none";
+            document.getElementById("dynamicContentsMultiChoice").style.display = "none";
+            document.getElementById("AnswerMultichoice").style.display = "none";
+        }
+    }
+  </script>
 </head>
 
 <body>
    
  <!-----------------------------NAVBAR ----------------------->
     <!-- Always shows a header, even in smaller screens. -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div class="mdl-layout mdl-js-layout ">
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
@@ -62,81 +98,150 @@ echo '<html lang="en">
         </nav>
       </div>
     </div>
-
-    <form method="post" action="add.php" enctype="multipart/form-data">
-    
-    <div id="qNameTimeContainer">
-        <div id="qName">  
-            <p>Question name:</p>
-            <input id="NameTfield" type="text" name="name" style="text-align:center; color:black;">
+        
+    <form id="form1" method="post" action="add.php" enctype="multipart/form-data">
+        <div id="qNameTimeContainer">
+            <div id="qName">  
+                <p>Question name:</p>
+                <input id="NameTfield" type="text" name="name" style="text-align:center; color:black;">
+            </div>
+            <br>
         </div>
+    
+        <div id="qTypeContainer">
+            <div id="qType">  
+                <p>Question type:</p>
+            </div>
+    
+            <div id="qTypeSelect">
+                  <div class="mdl-selectfield mdl-js-selectfield">
+                    <select class="Typesel" id="Typesel" name="type" onchange="myFunction()">
+                      <option value="Text">Text</option>
+                      <option value="MC">Multi choice</option>
+                      <option value="TF">True/False</option>   
+                    </select>
+                  </div>
+            </div>
+            <br>
+        </div>
+    
+        <div id="dynamicBlank">
+            <p id="uploadQuestionText">Upload an image for the question (optional)</p>
+                    <input id="UploadQuestion" type="file" name="fileimage" accept="image/*">
+                    <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
+            <br>
+            <br>
+            <p style="text-align: center; font-size: 120%;"><b>Type the question contents below</b></p>
+            <textarea form="form1" name="questionText1" rows="12" cols="80"></textarea>
+        </div>
+    
+        <div id="dynamicContentsText">
+            <p id="uploadQuestionText">Upload an image for the question (optional)</p>
+                    <input id="UploadQuestion" type="file" name="fileimage" accept="image/*">
+                    <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
+            <br>
+            <br>
+            <p style="text-align: center; font-size: 120%;"><b>Type the question contents below</b></p>
+            <textarea form="form1" name="questionText2" rows="12" cols="80"></textarea>
+        </div>
+    
+        <div id="dynamicContentsMultiChoice">
+        <p id="uploadQuestionText">Upload an image for the question (optional)</p>
+        <input id="UploadQuestion" type="file" name="fileimage" accept="image/*">
+        <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
         <br>
+        <br>
+        <p style="text-align: center; font-size: 120%;"><b>Type the question contents below</b></p>
+         <textarea form="form1" name="comment" id="commemt" rows="4" cols="80"></textarea><br>
+         <div style="text-align: center;">
+         A <textarea form="form1" name="questionA" rows="1" cols="12" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         B <textarea form="form1" name="questionB" rows="1" cols="12"></textarea>
+         </div><br>
+        <div style="text-align: center;">
+         C <textarea form="form1" name="questionC" rows="1" cols="12"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         D <textarea form="form1" name="questionD" rows="1" cols="12"></textarea>
+        </div>
     </div>
     
-    
-    <div id="qTypeContainer">
-        <div id="qType">  
-            <p>Question type:</p>
-        </div>
-
-        <div id="qTypeSelect">   
-            <form>
-              <div class="mdl-selectfield mdl-js-selectfield">
-                <select class="mdl-selectfield__select" id="namesel" name="type">
-                  <option value=""></option>
-                  <option value="option1">Text</option>
-                  <option value="option2">Multi choice</option>
-                  <option value="option3">Yes/No</option>
-                </select>
-              </div>
-           </form>
-        </div>
+    <div id="dynamicContentsTrueFalse">
+        <p id="uploadQuestionText">Upload an image for the question (optional)</p>
+                <input id="UploadQuestion" type="file" name="QuestionImg" accept="image/*">
+                <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
         <br>
+        <br>
+        <p style="text-align: center; font-size: 120%;"><b>Type the question contents below</b></p>
+        <textarea form="form1" name="questionText4" rows="12" cols="80"></textarea><br> 
     </div>
-
-
-
+    
     <div id="qTopicContainer">
-        <div id="qTopic">  
+        <div id="qTopic">
             <p>Under the topic:</p>
-        </div>
+    </div>
 
-        <div id="qTopicSelect">   
-            <form>
+        <div id="qTopicSelect">
               <div class="mdl-selectfield mdl-js-selectfield">
-                <select class="mdl-selectfield__select" id="topicsel" name="topic">
-                  <option value=""></option>
-                  ';
-                    $count = 1;
-                    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<option value = "Place holder ' . $count .'" > ' . $result['QTopic'] . ' </option >';
-                        $count = $count +1;
-                    }
-                    echo '<option value = "New Topic" > New Topic </option >  
-                </select>
+                <select class="mdl-selectfield__select" id="professsion1" name="topic">';
+$count = 1;
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo '<option value="' . $result['QTopic'] . '"> ' . $result['QTopic'] . ' </option >';
+    $count = $count +1;
+}
+                  echo '</select>
               </div>
-           </form>
         </div>
         <br>
     </div>
-    <div id="AnswerContainer">
-        <div id="AnswerTitle">  
-            <p>Upload the answer or enter it via the text box below.</p>
-        </div>
-
-        <div id="AnswerSelect">   
-            <input type="file" name="fileimage" accept="image/*">
-        </div>
+        
+    <div id=DynamicAnswer>
+            <p style="text-align: center; font-size: 120%;"><b>Upload the answer via an image/PDF.</b></p>
+            <input id="UploadAnswer" type="file" name="QuestionImg" accept="image/*">
+            <label id="UploadAnswerLabel" for="UploadAnswer">Choose file</label> 
         <br>
-        <div id="AnswerTextBox">
-            <textarea rows="4" cols="122"></textarea>
-        </div>
+            <textarea form="form1" rows="4" cols="110"></textarea>
     </div>
-    </form>
-
+    
+    <div id="AnswerContainer"> 
+            <p style="text-align: center"><b>Upload the answer via an image/PDF.</b></p>
+            <input id="UploadAnswer" type="file" name="QuestionImg" accept="image/*">
+            <label id="UploadAnswerLabel" for="UploadAnswer">Choose file</label> 
+        <br>
+            <textarea form="form1" rows="4" cols="110"></textarea>
+    </div>
+    
+    <div id="AnswerMultichoice">
+        <p style="text-align: center"> Select the correct answers</p>
+        <table style="margin-left: auto; margin-right: auto">     
+        <tr>    
+            <td align="middle">
+                <input type="checkbox" name="optionA" value="A"> A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="optionA" value="B"> B
+            </td> 
+        </tr>    
+        <tr>
+            <td align="middle">
+                <input type="checkbox" name="optionC" value="C"> C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="optionD" value="D"> D 
+            </td>
+        </tr>    
+        </table> 
+    </div>
+    
+    <div id="AnswerTrueFalse">
+        <p style="text-align: center;"> Select the correct answers</p>
+        <table style="margin-left: auto; margin-right: auto">     
+        <tr>    
+            <td align="middle">
+                <input type="radio" name="answer" value="T">True</input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="answer" value="F">False</input>
+            </td> 
+        </tr>      
+        </table> 
+    </div>
+    
     <button id="submitButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
      Submit
     </button>
+    </form>
     
     <img id="UoaLogo" src="/Pictures/uoaLogo.jpg" alt="UoaLogo"/>
     
