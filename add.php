@@ -37,16 +37,24 @@ if ($_POST['type'] == "MF" and (!isset($_POST['questionA']) or !isset($_POST['qu
     exit();
 }
 
-$target_dir = "Pictures/";
-$target_file1 = $target_dir . basename($_FILES["images"]["name"]);
-$imageFileType = pathinfo($target_file1,PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
-move_uploaded_file($_FILES['fileimage']['tmp_name'], $target_file1);
 
-$target_file2 = $target_dir . basename($_FILES["questionimg"]["name"]);
-$imageFileType = pathinfo($target_file2,PATHINFO_EXTENSION);
+$target_dir = "Pictures/";
+$target_file1 = "";
+$target_file2 = "";
+if (!($_FILES["images"]["name"]=="")){
+    $target_file1 = $target_dir . basename($_FILES["images"]["name"]);
+    $imageFileType = pathinfo($target_file1,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
-move_uploaded_file($_FILES['questionimg']['tmp_name'], $target_file2);
+    move_uploaded_file($_FILES['fileimage']['tmp_name'], $target_file1);
+}
+
+if (!($_FILES["images"]["name"]=="")){
+    $target_file2 = $target_dir . basename($_FILES["questionimg"]["name"]);
+    $imageFileType = pathinfo($target_file2,PATHINFO_EXTENSION);
+// Check if image file is a actual image or fake image
+    move_uploaded_file($_FILES['questionimg']['tmp_name'], $target_file2);
+}
+
 
 
 
