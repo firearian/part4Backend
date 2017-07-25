@@ -24,7 +24,6 @@ $results = $stmt->execute();
 
 
 echo '<!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -42,38 +41,33 @@ echo '<!doctype html>
   <script type="text/javascript">
     function myFunction() {
         if (document.getElementById("Typesel").value == "MC") {
-            document.getElementById("dynamicContentsTrueFalse").style.display = "none";
-            document.getElementById("AnswerTrueFalse").style.display = "none";
             document.getElementById("AnswerContainer").style.display = "none";
-            document.getElementById("dynamicBlank").style.display = "none";
-            document.getElementById("DynamicAnswer").style.display = "none";
+            document.getElementById("AnswerMultichoice").style.display = "block";
+            document.getElementById("AnswerTrueFalse").style.display = "none";
             document.getElementById("dynamicContentsText").style.display = "none";
             document.getElementById("dynamicContentsMultiChoice").style.display = "block";
-            document.getElementById("AnswerMultichoice").style.display = "block";
-        } else if (document.getElementById("Typesel").value == "Text") {
             document.getElementById("dynamicContentsTrueFalse").style.display = "none";
-            document.getElementById("AnswerTrueFalse").style.display = "none";
+            
+        } else if (document.getElementById("Typesel").value == "Text") {
             document.getElementById("AnswerContainer").style.display = "block";
-            document.getElementById("dynamicContentsText").style.display = "block";
-            document.getElementById("dynamicBlank").style.display = "none";
-            document.getElementById("DynamicAnswer").style.display = "none";
-            document.getElementById("dynamicContentsMultiChoice").style.display = "none";
             document.getElementById("AnswerMultichoice").style.display = "none";
+            document.getElementById("AnswerTrueFalse").style.display = "none";
+            document.getElementById("dynamicContentsText").style.display = "block";
+            document.getElementById("dynamicContentsMultiChoice").style.display = "none";
+            document.getElementById("dynamicContentsTrueFalse").style.display = "none";
+
         }
         else if (document.getElementById("Typesel").value == "TF"){
-            document.getElementById("dynamicContentsTrueFalse").style.display = "block";
+           document.getElementById("AnswerContainer").style.display = "none";
+            document.getElementById("AnswerMultichoice").style.display = "none";
             document.getElementById("AnswerTrueFalse").style.display = "block";
-            document.getElementById("AnswerContainer").style.display = "none";
-            document.getElementById("dynamicBlank").style.display = "none";
-            document.getElementById("DynamicAnswer").style.display = "none";
             document.getElementById("dynamicContentsText").style.display = "none";
             document.getElementById("dynamicContentsMultiChoice").style.display = "none";
-            document.getElementById("AnswerMultichoice").style.display = "none";
+            document.getElementById("dynamicContentsTrueFalse").style.display = "block";
         }
     }
   </script>
 </head>
-
 <body>
    
  <!-----------------------------NAVBAR ----------------------->
@@ -125,15 +119,6 @@ echo '<!doctype html>
             <br>
         </div>
     
-        <div id="dynamicBlank">
-            <p id="uploadQuestionText">Upload an image for the question (optional)</p>
-                    <input id="UploadQuestion" type="file" name="fileimage" accept="image/*">
-                    <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
-            <br>
-            <br>
-            <p style="text-align: center; font-size: 120%;"><b>Type the question contents below</b></p>
-            <textarea form="form1" name="questionText1" rows="12" cols="80"></textarea>
-        </div>
     
         <div id="dynamicContentsText">
             <p id="uploadQuestionText">Upload an image for the question (optional)</p>
@@ -142,7 +127,7 @@ echo '<!doctype html>
             <br>
             <br>
             <p style="text-align: center; font-size: 120%;"><b>Type the question contents below</b></p>
-            <textarea form="form1" name="questionText2" rows="12" cols="80"></textarea>
+            <textarea form="form1" name="QText" rows="12" cols="80"></textarea>
         </div>
     
         <div id="dynamicContentsMultiChoice">
@@ -152,32 +137,31 @@ echo '<!doctype html>
         <br>
         <br>
         <p style="text-align: center; font-size: 120%;"><b>Type the question contents below</b></p>
-         <textarea form="form1" name="comment" id="commemt" rows="4" cols="80"></textarea><br>
+         <textarea form="form1" name="QText" id="commemt" rows="4" cols="80"></textarea><br>
          <div style="text-align: center;">
-         A <textarea form="form1" name="questionA" rows="1" cols="12" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         B <textarea form="form1" name="questionB" rows="1" cols="12"></textarea>
+         A <textarea form="form1" name="question[]" rows="1" cols="12" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         B <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>
          </div><br>
         <div style="text-align: center;">
-         C <textarea form="form1" name="questionC" rows="1" cols="12"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         D <textarea form="form1" name="questionD" rows="1" cols="12"></textarea>
+         C <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         D <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>
         </div>
     </div>
     
     <div id="dynamicContentsTrueFalse">
         <p id="uploadQuestionText">Upload an image for the question (optional)</p>
-                <input id="UploadQuestion" type="file" name="QuestionImg" accept="image/*">
+                <input id="UploadQuestion" type="file" name="questionimg" accept="image/*">
                 <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
         <br>
         <br>
         <p style="text-align: center; font-size: 120%;"><b>Type the question contents below</b></p>
-        <textarea form="form1" name="questionText4" rows="12" cols="80"></textarea><br> 
+        <textarea form="form1" name="QText" rows="12" cols="80"></textarea><br> 
     </div>
     
     <div id="qTopicContainer">
         <div id="qTopic">
             <p>Under the topic:</p>
     </div>
-
         <div id="qTopicSelect">
               <div class="mdl-selectfield mdl-js-selectfield">
                 <select class="mdl-selectfield__select" id="professsion1" name="topic">';
@@ -186,26 +170,19 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     echo '<option value="' . $result['QTopic'] . '"> ' . $result['QTopic'] . ' </option >';
     $count = $count +1;
 }
-                  echo '</select>
+echo '</select>
               </div>
         </div>
         <br>
     </div>
         
-    <div id=DynamicAnswer>
-            <p style="text-align: center; font-size: 120%;"><b>Upload the answer via an image/PDF.</b></p>
-            <input id="UploadAnswer" type="file" name="QuestionImg" accept="image/*">
-            <label id="UploadAnswerLabel" for="UploadAnswer">Choose file</label> 
-        <br>
-            <textarea form="form1" rows="4" cols="110"></textarea>
-    </div>
-    
+
     <div id="AnswerContainer"> 
             <p style="text-align: center"><b>Upload the answer via an image/PDF.</b></p>
-            <input id="UploadAnswer" type="file" name="QuestionImg" accept="image/*">
+            <input id="UploadAnswer" type="file" name="questionimg" accept="image/*">
             <label id="UploadAnswerLabel" for="UploadAnswer">Choose file</label> 
         <br>
-            <textarea form="form1" rows="4" cols="110"></textarea>
+            <textarea  name="Answer" form="form1" rows="4" cols="110"></textarea>
     </div>
     
     <div id="AnswerMultichoice">
@@ -213,14 +190,14 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <table style="margin-left: auto; margin-right: auto">     
         <tr>    
             <td align="middle">
-                <input type="checkbox" name="optionA" value="A"> A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox" name="optionA" value="B"> B
+                <input type="checkbox" name="Answer" value="A"> A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="Answer" value="B"> B
             </td> 
         </tr>    
         <tr>
             <td align="middle">
-                <input type="checkbox" name="optionC" value="C"> C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox" name="optionD" value="D"> D 
+                <input type="checkbox" name="Answer" value="C"> C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="Answer" value="D"> D 
             </td>
         </tr>    
         </table> 
@@ -231,8 +208,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <table style="margin-left: auto; margin-right: auto">     
         <tr>    
             <td align="middle">
-                <input type="radio" name="answer" value="T">True</input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" name="answer" value="F">False</input>
+                <input type="radio" name="Answer" value="True">True</input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="Answer" value="False">False</input>
             </td> 
         </tr>      
         </table> 
