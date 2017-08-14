@@ -5,9 +5,9 @@ $password = '';
 
 $dsn = 'mysql:host=localhost;dbname=part4;charset=utf8mb4';
 $opt = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
+    PDO::ATTR_EMULATE_PREPARES => false,
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 
@@ -23,7 +23,7 @@ $results = $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $id = "";
-$characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
+$characters = array_merge(range('A', 'Z'), range('a', 'z'), range('0', '9'));
 
 for ($i = 0; $i < 5; $i++) {
     $rand = mt_rand(0, count($characters) - 1);
@@ -32,7 +32,6 @@ for ($i = 0; $i < 5; $i++) {
 
 $stmt = $pdo->prepare("UPDATE qtests SET active = :actives, pass = :ids  WHERE id='$data'");
 $stmt->execute(['actives' => 1, 'ids' => $id]);
-
 
 
 echo '
@@ -49,7 +48,7 @@ echo '
   <!-- Latest compiled Material Design https://7b0257f4.ngrok.io -->    
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>   
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>   
     
   <link rel="stylesheet" href="Active.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -111,10 +110,25 @@ dg[8]=new Image();dg[8].src="/Clock/dg8.gif";
 dg[9]=new Image();dg[9].src="/Clock/dg9.gif";
 var t;
 var tt;
+var ttt;
 var d = ' . $result['time'] . ';
 var hr = d / 60;
 var mn = d % 60;
 var se = 0;
+var ansdata;
+var rowid = 0;
+
+function settime (){
+    d = document.getElementById("minutesBox").value;
+    hr = d / 60;
+    mn = d % 60;
+    se = 0;
+    console.log(d);
+    console.log(hr);
+    console.log(mn);
+    dotime();
+}
+
 
 function dotime() {
 
@@ -125,6 +139,41 @@ function dotime() {
     document.se1.src = getSrc(se, 10);
     document.se2.src = getSrc(se, 1);
 }
+
+function realtime() {
+    $.ajax({
+        url: "answerdata.php",
+        data: {info:' . $data . ', row: rowid},
+        dataType: "json",
+        success: function(ans) {
+            if (ans.length != ""){
+                $("div#dynamicanswers").append(ans.html);
+                rowid = ans.lengthy;
+            }
+        },
+        error: function (jqXHR, exception) {
+            var msg = "";
+            if (jqXHR.status === 0) {
+                msg = "Not connect.\n Verify Network.";
+            } else if (jqXHR.status == 404) {
+                msg = "Requested page not found. [404]";
+            } else if (jqXHR.status == 500) {
+                msg = "Internal Server Error [500].";
+            } else if (exception === "parsererror") {
+                msg = "Requested JSON parse failed";
+            } else if (exception === "timeout") {
+                msg = "Time out error.";
+            } else if (exception === "abort") {
+                msg = "Ajax request aborted.";
+            } else {
+                msg = "Uncaught Error.\n" + jqXHR.responseText;
+            }
+            console.log(msg);
+        }
+    });
+    ttt = setInterval(realtime, 10000);
+}
+    
 
 function countdown() {
     // starts countdown
@@ -150,7 +199,10 @@ function countdown() {
 
 function reset (){
     clearTimeout(t);
+    clearInterval(ttt);
 }
+
+
 
 
 function getSrc(digit,index){
@@ -163,7 +215,7 @@ window.onload=function() {
 }
 </script>
     
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="startButton" type="button" onclick="countdown()">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="startButton" type="button" onclick="countdown(); realtime();">
       Start
     </button>
     
@@ -171,11 +223,23 @@ window.onload=function() {
       Stop
     </button>
 
-    <button class="mdl-button mdl-js-button mdl-button--raised" id="activateSession" type="submit">
-      ACTIVATE SESSION
-    </button>
-        
+    <div id="manuleTimeContainer">
+        <p> Set time manually (optional)</p>
+        <input id="minutesBox" type="text" value="min" name="QuestionName" size="5" style="text-align:center; color:black;">
+        <button id="setManuleTime" type="button" onclick="settime();" >Set</button>
+    </div>
+    
+
+    <div id="dynamicanswers">
+    </div>
+
+
     <img id="UoaLogo" src="/Pictures/uoaLogo.jpg" alt="UoaLogo"/>
+
+    
+    
+    
+    
     
 </body>
 </html>';

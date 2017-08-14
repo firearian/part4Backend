@@ -57,13 +57,56 @@
     box-shadow: 0px 6px 8px grey;
 }
 
-#activateSession{
+#manuleTimeContainer{
     position: absolute;
-    top: 32%;
+    height: 8%;
+    top: 35%;
     left: 46%;
-    background-color: red;
     box-shadow: 0px 6px 8px grey;
 }
+
+#minutesBox{
+    position: absolute;
+    top: 47%;
+    left: 25%;
+}
+#setManuleTime{
+    position: absolute;
+    top: 47%;
+    left: 50%;
+}
+
+#dynamicanswers{
+    position: absolute;
+    top: 70%;
+    left:33%;
+}
+
+table{
+    position: absolute;
+    top: 25%;
+    left: 3%;
+    width: 90%;
+    text-align:center;
+    box-shadow: 0px 4px 4px grey;
+}
+
+th{
+    background-color: darkcyan;
+    border: 1px solid black;
+    color: white;
+    text-align:center;
+    padding: 5px;
+    font-size: 150%;
+}
+
+td{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+tr:nth-child(even){background-color: beige}
+
 
 #UoaLogo {
     position: absolute;
