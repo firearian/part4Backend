@@ -21,9 +21,18 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 
-$data = $_SERVER['QUERY_STRING'];
+$data = explode("&", $_SERVER['QUERY_STRING']);
 
-$stmt = $pdo->prepare("SELECT * FROM questions WHERE id='$data'");
+//If deleting:
+if ($data[0]==="delete"){
+    $stmt = $pdo->prepare("DELETE FROM questions WHERE id='$data[1]'");
+    $results = $stmt->execute();
+    header("Location: LecturerSavedQuestions.php");
+    exit();
+}
+
+
+$stmt = $pdo->prepare("SELECT * FROM questions WHERE id='$data[1]'");
 $result = $stmt->execute();
 $results = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -72,7 +81,7 @@ echo '<!doctype html>
       </div>
     </div>
         
-    <form id="form1" method="post" action="add.php?edit&'. $data .'" enctype="multipart/form-data">
+    <form id="form1" method="post" action="add.php?edit&'. $data[1] .'" enctype="multipart/form-data">
     
     
         <div id="qNameTimeContainer">
@@ -91,9 +100,10 @@ echo '<!doctype html>
     
             <div id="qTypeSelect">
                   <div class="mdl-selectfield mdl-js-selectfield">
-                    <select class="Typesel" id="Typesel" name="type" disabled>
+                    <select class="Typesel" id="Typesel" disabled>
                       <option value="Text">Text</option>
                     </select>
+                    <input type="hidden" name="type" value="Text" />
                   </div>
             </div>
             <br>
@@ -148,9 +158,10 @@ echo '<!doctype html>
     
             <div id="qTypeSelect">
                   <div class="mdl-selectfield mdl-js-selectfield">
-                    <select class="Typesel" id="Typesel" name="type" disabled>
+                    <select class="Typesel" id="Typesel" disabled>
                       <option value="MC">Multi Choice</option>
                     </select>
+                    <input type="hidden" name="type" value="MC" />
                   </div>
             </div>
             <br>
@@ -223,9 +234,10 @@ echo '<!doctype html>
     
             <div id="qTypeSelect">
                   <div class="mdl-selectfield mdl-js-selectfield">
-                    <select class="Typesel" id="Typesel" name="type" disabled>
+                    <select class="Typesel" id="Typesel" disabled>
                       <option value="TF">True/False</option>
                     </select>
+                    <input type="hidden" name="type" value="TF" />
                   </div>
             </div>
             <br>

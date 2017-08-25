@@ -81,14 +81,16 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         <td id="Border">' . $result1['Qtype'] . '</td>';
                         if ($result1['Qtype']=="MC"){
                             echo '<td id="Border">' . unserialize(base64_decode($result1['Multi']))[$result1['answers']-1] . '</td>';
+                        } elseif ($result1['Qtype']=="Text"){
+                            echo '<td id="Border">' . (!($result1['Answerimage']=="") ? '<img align="center" src="' . $result1['Answerimage'] . '" class="img-responsive"/>' : $result1['answers'] ) . '</td>';
                         } else{
                             echo '<td id="Border">' . $result1['answers'] . '</td>';
                         }
                         echo '<td id="Border">
-                        <img src="' . $result1['image'] . '" class="img-responsive"/>
+                        <img align="center" src="' . $result1['image'] . '" class="img-responsive"/>
                         </td>
-                        <td id="Border"><a href="QuestionMethods.php?'. $result1['id'] .'">Edit</a></td>
-                        <td id="NoBorder"><a href="EditQuestion.php">Delete</a></td>
+                        <td id="Border"><a href="QuestionMethods.php?edit&'. $result1['id'] .'">Edit</a></td>
+                        <td id="NoBorder"><a href="QuestionMethods.php?delete&'. $result1['id'] .'">Delete</a></td>
                       </tr>';
                     };
                     echo '

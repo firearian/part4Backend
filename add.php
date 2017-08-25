@@ -17,6 +17,9 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 
+// Validation of method
+$data = explode("&", $_SERVER['QUERY_STRING']);
+
 //Validation of input
 
 if (!isset($_POST['name']) or !isset($_POST['topic']) or !isset($_POST['type']) or !isset($_POST['Answer'])) {
@@ -25,7 +28,7 @@ if (!isset($_POST['name']) or !isset($_POST['topic']) or !isset($_POST['type']) 
     exit();
 }
 
-if (($_FILES['fileimage']['name']=="") and !isset($_POST['QText'])) {
+if ((!($_FILES['fileimage']['name']=="") or ($data[0]==="edit")) and !isset($_POST['QText'])) {
     echo "Question not submitted.<br><br>";
     echo "<br><br><button onclick=\"location.href='LecturerNewQuestion.php';\" type=\"button\" class=\"signupbtn\">Try again</button>";
     exit();
@@ -41,7 +44,10 @@ if ($_POST['type'] == "MF" and (!isset($_POST['questionA']) or !isset($_POST['qu
 $target_dir = "Pictures/";
 $target_file1 = "";
 $target_file2 = "";
+$fileimage = false;
+$questionimage = false;
 if (!($_FILES["fileimage"]["name"]=="")){
+    $fileimage = true;
     $target_file1 = $target_dir . basename($_FILES["fileimage"]["name"]);
     $imageFileType = pathinfo($target_file1,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
@@ -49,6 +55,7 @@ if (!($_FILES["fileimage"]["name"]=="")){
 }
 
 if (!($_FILES["questionimg"]["name"]=="")){
+    $questionimage = true;
     $target_file2 = $target_dir . basename($_FILES["questionimg"]["name"]);
     $imageFileType = pathinfo($target_file2,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
@@ -69,8 +76,15 @@ if ($typ==="MC"){
     $qmc = base64_encode(serialize($_POST['question']));
 }
 
-$stmt = $pdo->prepare("INSERT INTO questions (Qname, creation, Qtype, image, username, QTopic, answers, Qtext, Answerimage, Multi) VALUES (:qname, :creation, :qtype, :image, :username, :qtopic, :answers, :qtext, :aimage, :multi)");
-$stmt->execute(['qname' => $nme, 'username' => $_SESSION['username'], 'creation' => date("Y:m:d:h:i:s"), 'qtype' => $typ, 'image' => $target_file1, 'qtopic' => $top, 'answers' => $answer, 'qtext' => $qtext, 'aimage' => $target_file2, 'multi' => $qmc]);
+
+
+if ($data[0]==="edit"){
+    $stmt = $pdo->prepare("UPDATE questions SET Qname = :Name, creation = :Time, ". ($fileimage===true ? "image = :QImage, " : "")."QTopic = :QTop, answers = :answer, Qtext = :QText, ".($questionimage===true ? "Answerimage = :Aimage, " : "") ."Multi = :multi WHERE id='$data[1]'");
+    $stmt->execute(['Name' => $nme, 'Time' => date("Y:m:d:h:i:s"), 'QImage' => $target_file1, 'QTop' => $top, 'answer' => $answer, 'QText' => $qtext, 'Aimage' => $target_file2, 'multi' => $qmc]);
+} else {
+    $stmt = $pdo->prepare("INSERT INTO questions (Qname, creation, Qtype, image, username, QTopic, answers, Qtext, Answerimage, Multi) VALUES (:qname, :creation, :qtype, :image, :username, :qtopic, :answers, :qtext, :aimage, :multi)");
+    $stmt->execute(['qname' => $nme, 'username' => $_SESSION['username'], 'creation' => date("Y:m:d:h:i:s"), 'qtype' => $typ, 'image' => $target_file1, 'qtopic' => $top, 'answers' => $answer, 'qtext' => $qtext, 'aimage' => $target_file2, 'multi' => $qmc]);
+}
 
 
 header("Location: LectureMM.php");
