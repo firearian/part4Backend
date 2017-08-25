@@ -34,10 +34,37 @@ $data = explode("&", $_SERVER['QUERY_STRING']);
 if ($data[0]==="edit"){
     $stmt = $pdo->prepare("UPDATE qtests SET name = :Name, time = :Time, data = :Data, username =  :Username, date = :Date WHERE id='$data[1]'");
     $stmt->execute(['Name' => $nme, 'Time' => $tme, 'Data' => $json, 'Username' => $_SESSION['username'],  'Date' => date("Y:m:d:h:i:s")]);
+
+    $stmt = $pdo->prepare("SELECT questionid FROM quizinters WHERE qtestsid='$data[1]'");
+    $stmt->execute();
+    $count = 0;
+    $array = [];
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (!in_array($result['questionid'], $_POST['questions'])){
+            $val = $result['questionid'];
+            $stmt1 = $pdo->prepare("UPDATE quizinters SET deleted = :Del WHERE questionid='$val'");
+            $stmt1->execute(['Del' => true]);
+        }
+        $array[$count] = $result['questionid'];
+        $count++;
+    }
+    foreach ($_POST['questions'] as $vals) {
+        if (!in_array($vals, $array)) {
+            $stmt = $pdo->prepare("INSERT INTO quizinters (qtestsid, questionid, deleted) VALUES (:qtid, :qid, :del)");
+            $stmt->execute(['qtid' => $data[1], 'qid' => $vals, 'del' => false]);
+        }
+    }
+
 }
 else {
     $stmt = $pdo->prepare("INSERT INTO qtests (name, time, data, username, date) VALUES (:Name, :Time, :Data, :Username, :Date)");
     $stmt->execute(['Name' => $nme, 'Time' => $tme, 'Data' => $json, 'Username' => $_SESSION['username'], 'Date' => date("Y:m:d:h:i:s")]);
+    $id = $pdo->lastInsertId();
+    foreach ($_POST['questions'] as $vals){
+        $stmt = $pdo->prepare("INSERT INTO quizinters (qtestsid, questionid, deleted) VALUES (:qtid, :qid, :del)");
+        $stmt->execute(['qtid' => $id, 'qid' => $vals, 'del' => false]);
+    }
 }
+
 header("Location: SavedTests.php");
 ?>

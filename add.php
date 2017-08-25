@@ -79,11 +79,31 @@ if ($typ==="MC"){
 
 
 if ($data[0]==="edit"){
-    $stmt = $pdo->prepare("UPDATE questions SET Qname = :Name, creation = :Time, ". ($fileimage===true ? "image = :QImage, " : "")."QTopic = :QTop, answers = :answer, Qtext = :QText, ".($questionimage===true ? "Answerimage = :Aimage, " : "") ."Multi = :multi WHERE id='$data[1]'");
-    $stmt->execute(['Name' => $nme, 'Time' => date("Y:m:d:h:i:s"), 'QImage' => $target_file1, 'QTop' => $top, 'answer' => $answer, 'QText' => $qtext, 'Aimage' => $target_file2, 'multi' => $qmc]);
+    $stmt = $pdo->prepare("UPDATE questions SET Qname = :Name, creation = :Time, ". ($fileimage===true ? "image = :QImage, " : "") ."QTopic = :QTop, answers = :answer, Qtext = :QText, ".  ($questionimage===true ? "Answerimage = :Aimage, " : "") ."Multi = :multi WHERE id='$data[1]'");
+    $array['Name'] = $nme;
+    $array['Time'] = date("Y:m:d:h:i:s");
+    ($fileimage===true ? $array['QImage'] = $target_file1 : null);
+    $array['QTop'] = $top;
+    $array['answer'] = $answer;
+    $array['QText'] = $qtext;
+    ($questionimage===true ? $array['Aimage'] = $target_file2 : null);
+    $array['multi'] = $qmc;
+    $stmt->execute($array);
+//    $stmt->execute(['Name' => $nme, 'Time' => date("Y:m:d:h:i:s"), ($fileimage===true ? "'QImage' => $target_file1" : ""), 'QTop' => $top, 'answer' => $answer, 'QText' => $qtext, ($questionimage===true ? "'Aimage' => $target_file2" : ""), 'multi' => $qmc]);
 } else {
     $stmt = $pdo->prepare("INSERT INTO questions (Qname, creation, Qtype, image, username, QTopic, answers, Qtext, Answerimage, Multi) VALUES (:qname, :creation, :qtype, :image, :username, :qtopic, :answers, :qtext, :aimage, :multi)");
-    $stmt->execute(['qname' => $nme, 'username' => $_SESSION['username'], 'creation' => date("Y:m:d:h:i:s"), 'qtype' => $typ, 'image' => $target_file1, 'qtopic' => $top, 'answers' => $answer, 'qtext' => $qtext, 'aimage' => $target_file2, 'multi' => $qmc]);
+    $array['qname'] = $nme;
+    $array['username'] = $_SESSION['username'];
+    $array['creation'] = date("Y:m:d:h:i:s");
+    $array['qtype'] = $typ;
+    $array['image'] = $target_file1;
+    $array['qtopic'] = $top;
+    $array['answers'] = $answer;
+    $array['qtext'] = $qtext;
+    $array['aimage'] = $target_file2;
+    $array['multi'] = $qmc;
+    $stmt->execute($array);
+//    $stmt->execute(['qname' => $nme, 'username' => $_SESSION['username'], 'creation' => date("Y:m:d:h:i:s"), 'qtype' => $typ, 'image' => $target_file1, 'qtopic' => $top, 'answers' => $answer, 'qtext' => $qtext, 'aimage' => $target_file2, 'multi' => $qmc]);
 }
 
 

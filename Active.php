@@ -18,10 +18,6 @@ $results = $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 //<script type="text/javascript" src="Active.js"></script>
 
-$stmt = $pdo->prepare("SELECT time FROM qtests WHERE id='$data'");
-$results = $stmt->execute();
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
-
 $id = "";
 $characters = array_merge(range('A', 'Z'), range('a', 'z'), range('0', '9'));
 
@@ -29,10 +25,6 @@ for ($i = 0; $i < 5; $i++) {
     $rand = mt_rand(0, count($characters) - 1);
     $id .= $characters[$rand];
 }
-
-$stmt = $pdo->prepare("UPDATE qtests SET active = :actives, pass = :ids  WHERE id='$data'");
-$stmt->execute(['actives' => 1, 'ids' => $id]);
-
 
 echo '
 <!doctype html>
@@ -173,6 +165,10 @@ function realtime() {
     });
     ttt = setInterval(realtime, 10000);
 }
+
+function activate() {
+    $.get("ActiveMethods.php?active&' . $data . '&'. $id .'");
+}
     
 
 function countdown() {
@@ -180,7 +176,7 @@ function countdown() {
     if (hr < 1 && mn == 0 && se == 0) {
         clearInterval(tt);
         clearTimeout(t);
-        $.get("deactivate.php?' . $data . '");
+        $.get("ActiveMethods.php?deactive&' . $data . '");
     }
 
     if (mn === 0 && se === 0){
@@ -215,7 +211,7 @@ window.onload=function() {
 }
 </script>
     
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="startButton" type="button" onclick="countdown(); realtime();">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="startButton" type="button" onclick="countdown(); realtime(); activate()">
       Start
     </button>
     

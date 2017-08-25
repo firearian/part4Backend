@@ -21,6 +21,8 @@ $data = explode("&", $_SERVER['QUERY_STRING']);
 if ($data[1]==="delete"){
     $stmt = $pdo->prepare("DELETE FROM qtests WHERE id='$data[0]'");
     $results = $stmt->execute();
+    $stmt = $pdo->prepare("UPDATE quizinters SET deleted = :Del WHERE qtestsid='$data[0]'");
+    $stmt->execute(['Del' => true]);
     header("Location: SavedTests.php");
 }
 
@@ -66,9 +68,9 @@ if ($data[1]==="edit") {
       </header>
       <div class="mdl-layout__drawer">
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="LecturerCreateTest.php">Create a test</a>
+          <a class="mdl-navigation__link" href="SelectQuestions.php">Create a test</a>
           <a class="mdl-navigation__link" href="LectureMM.php">Main Menu</a>   
-          <a class="mdl-navigation__link" href="Login.html">Logout</a>
+          <a class="mdl-navigation__link" href="logout.php">Logout</a>
         </nav>
       </div>
     </div>

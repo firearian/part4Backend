@@ -37,7 +37,7 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 $answer['html'] .=  "</table>";
 
-$answer['lengthy'] =  "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
+$answer['lengthy'] =  $count;
 
 if ($count == $_REQUEST['row']){
     $answer['html'] = "";
