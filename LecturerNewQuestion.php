@@ -138,19 +138,19 @@ echo '<!doctype html>
         <br>
         <p style="text-align: center; font-size: 120%;"><b>Type the question contents below</b></p>
          <textarea form="form1" name="QText" id="commemt" rows="4" cols="80"></textarea><br>
-         <div style="text-align: center;">
-         A <textarea form="form1" name="question[]" rows="1" cols="12" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         B <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>
-         </div><br>
-        <div style="text-align: center;">
-         C <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         D <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>
+             <div style="text-align: center;">
+             A <textarea form="form1" name="question[]" rows="1" cols="12" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             B <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>
+             </div><br>
+            <div style="text-align: center;">
+             C <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             D <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>
+            </div>
         </div>
-    </div>
     
     <div id="dynamicContentsTrueFalse">
         <p id="uploadQuestionText">Upload an image for the question (optional)</p>
-                <input id="UploadQuestion" type="file" name="questionimg" accept="image/*">
+                <input id="UploadQuestion" type="file" name="fileimage" accept="image/*">
                 <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
         <br>
         <br>
@@ -190,14 +190,14 @@ echo '</select>
         <table style="margin-left: auto; margin-right: auto">     
         <tr>    
             <td align="middle">
-                <input type="checkbox" name="Answer" value="A"> A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox" name="Answer" value="B"> B
+                <input type="checkbox" name="Answer" value="1"> A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="Answer" value="2"> B
             </td> 
         </tr>    
         <tr>
             <td align="middle">
-                <input type="checkbox" name="Answer" value="C"> C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox" name="Answer" value="D"> D 
+                <input type="checkbox" name="Answer" value="3"> C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="Answer" value="4"> D 
             </td>
         </tr>    
         </table> 

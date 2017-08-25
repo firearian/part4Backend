@@ -1,0 +1,250 @@
+.mdl-layout-title{
+    left: 41%;
+    font-size: 200%;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    font-size: 20px;
+}
+
+.mdl-layout__header{
+    box-shadow: 0px 8px 8px grey;
+}
+
+#qNameTimeContainer{
+    position: absolute;
+    top: 11%;
+    left: 43%;
+    width: 17%;
+    height: 8%;
+}
+
+#qName p{
+    position: relative;
+    text-align: center;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+#NameTfield{
+    position: absolute;
+    top:40%;
+    left: 1%;
+    width:98%;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#qTopicContainer{
+    position: absolute;
+    top: 19%;
+    left: 30%;
+    width: 21%;
+    padding: 2px;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#qTopic{
+    position: absolute;
+    left: 2%;
+    font-size: 120%;
+    font-weight: bold;
+    text-align: center;
+}
+
+#qTopic p{
+    font-size: 100%;
+    font-weight: bold;
+}
+
+#qTopicSelect{
+    position: absolute;
+    right: 2%;
+}
+
+#qTypeContainer{
+    position: absolute;
+    top: 19%;
+    left: 53%;
+    width: 20%;
+    padding: 2px;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#qType{
+    position: absolute;
+    left: 2%;
+    font-size: 120%;
+    font-weight: bold;
+    text-align: center;
+}
+
+#qType p{
+    font-size: 100%;
+    font-weight: bold;
+}
+
+#qTypeSelect{
+    position: absolute;
+    right: 2%;
+}
+
+#dynamicContentsText{
+    position: absolute;
+    top:25%;
+    left: 30%;
+    width: 43.4%;
+}
+
+#dynamicContentsMultiChoice{
+    position: absolute;
+    top:25%;
+    left: 30%;
+    width: 43.4%;
+}
+
+#dynamicContentsTrueFalse{
+    position: absolute;
+    top:25%;
+    left: 30%;
+    width: 43.4%;
+}
+
+
+#uploadQuestionText{
+    position: absolute;
+    left: 17%;
+}
+
+#UploadQuestion{
+    height: 0;
+    width: 0;
+}
+
+#UploadQuestionLabel {
+    position: absolute;
+    top: 0%;
+    left: 65%;
+    border: 1px solid #cccccc;
+    padding: 0.25% 3%;
+    font-family:arial;
+    background-color: lightgrey;
+}
+
+
+#AnswerContainer{
+    position: absolute;
+    top: 77%;
+    left: 20%;
+    border: 1px solid black;
+    width: 60%;
+    padding: 0.5% 0.5%;
+    background-color:greenyellow;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#AnswerSelect{
+    position: absolute;
+    top: 18%;
+    left: 41%;
+}
+
+#AnswerTextBox{
+    position: absolute;
+    top: 35%;
+    left: 0.5%;
+}
+
+#AnswerMultichoice{
+    position: absolute;
+    top: 77%;
+    left: 20%;
+    border: 1px solid black;
+    width: 60%;
+    padding: 0.5% 0.5%;
+    background-color:greenyellow;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#AnswerTrueFalse{
+    position: absolute;
+    top: 77%;
+    left: 20%;
+    border: 1px solid black;
+    width: 60%;
+    padding: 0.5% 0.5%;
+    background-color:greenyellow;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#False{
+    height: 0;
+    width: 0;
+}
+
+#FalseLabel {
+    position: absolute;
+    top: 0%;
+    left: 65%;
+    border: 1px solid #cccccc;
+    padding: 0.25% 3%;
+    font-family:arial;
+    background-color: lightgrey;
+}
+
+FalseLabel:focus{
+    background:yellow;
+}
+
+#UploadAnswer{
+    height: 0;
+    width: 0;
+}
+
+#UploadAnswerLabel {
+    position: relative;
+    left: 44%;
+    border: 1px solid #cccccc;
+    padding: 0.25% 3%;
+    font-family:arial;
+    background-color: lightgrey;
+
+}
+
+#submitButton{
+    position: absolute;
+    top: 105%;
+    left: 48%;
+    box-shadow: 0px 6px 5px grey;
+}
+
+#UoaLogo {
+    position: absolute;
+    top: 110%;
+    left: 0.2%;
+    height: 8%;
+}
+
+
+#TrueFalseButton {
+    position: relative;
+    width: 100%;
+    background-color:lightblue;
+    border-radius:4px;
+    border:1px solid black;
+    text-align:center;
+    padding:1% 1%;
+}
+
+#TrueFalseButton input {
+    height: 0%;
+    width: 0%;
+    display: none;
+}
+
+#TrueFalseButton input:checked + span {
+    background-color:red;
+    color:white;
+}

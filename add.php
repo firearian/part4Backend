@@ -41,14 +41,14 @@ if ($_POST['type'] == "MF" and (!isset($_POST['questionA']) or !isset($_POST['qu
 $target_dir = "Pictures/";
 $target_file1 = "";
 $target_file2 = "";
-if (!($_FILES["images"]["name"]=="")){
-    $target_file1 = $target_dir . basename($_FILES["images"]["name"]);
+if (!($_FILES["fileimage"]["name"]=="")){
+    $target_file1 = $target_dir . basename($_FILES["fileimage"]["name"]);
     $imageFileType = pathinfo($target_file1,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
     move_uploaded_file($_FILES['fileimage']['tmp_name'], $target_file1);
 }
 
-if (!($_FILES["images"]["name"]=="")){
+if (!($_FILES["questionimg"]["name"]=="")){
     $target_file2 = $target_dir . basename($_FILES["questionimg"]["name"]);
     $imageFileType = pathinfo($target_file2,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
@@ -65,7 +65,8 @@ $qtext = $_POST['QText'];
 $answer = $_POST['Answer'];
 $qmc = "";
 if ($typ==="MC"){
-    $qmc = json_encode($_POST['question']);
+//    $qmc = json_encode($_POST['question']);
+    $qmc = base64_encode(serialize($_POST['question']));
 }
 
 $stmt = $pdo->prepare("INSERT INTO questions (Qname, creation, Qtype, image, username, QTopic, answers, Qtext, Answerimage, Multi) VALUES (:qname, :creation, :qtype, :image, :username, :qtopic, :answers, :qtext, :aimage, :multi)");

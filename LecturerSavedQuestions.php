@@ -56,7 +56,7 @@ echo '
       <div class="mdl-layout__drawer">
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="LectureMM.php">Main Menu</a>   
-          <a class="mdl-navigation__link" href="Login.html">Logout</a>
+          <a class="mdl-navigation__link" href="logout.php">Logout</a>
         </nav>
       </div>
     </div>
@@ -78,12 +78,17 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     while ($result1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
                     echo '<tr>
                         <td id="NoBorder">' . $result1['Qname'] . '</td>
-                        <td id="Border">' . $result1['Qtype'] . '</td>
-                        <td id="Border"> Answers Go here</td>
-                        <td id="Border">
-                        <img src="/Pictures/ExampleSavedQuestion.jpg" class="img-responsive"/>
+                        <td id="Border">' . $result1['Qtype'] . '</td>';
+                        if ($result1['Qtype']=="MC"){
+                            echo '<td id="Border">' . unserialize(base64_decode($result1['Multi']))[$result1['answers']-1] . '</td>';
+                        } else{
+                            echo '<td id="Border">' . $result1['answers'] . '</td>';
+                        }
+                        echo '<td id="Border">
+                        <img src="' . $result1['image'] . '" class="img-responsive"/>
                         </td>
-                        <td id="NoBorder"><a href="EditQuestion.php">Edit Question</a></td>
+                        <td id="Border"><a href="QuestionMethods.php?'. $result1['id'] .'">Edit</a></td>
+                        <td id="NoBorder"><a href="EditQuestion.php">Delete</a></td>
                       </tr>';
                     };
                     echo '
