@@ -3,17 +3,23 @@ session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['status'] == "l") {} else {
     echo '<script type="text/javascript"> window.location = "index.html" </script>';
 }
+
 $user = 'pomufoq_root';
 $password = 'password';
+
 $dsn = 'mysql:host=localhost;dbname=pomufoq_part4;charset=utf8mb4';
+
 $opt = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
+
 $stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions WHERE deleted='0'");
 $results = $stmt->execute();
+
+
 echo '<!doctype html>
 <html lang="en">
 <head>
@@ -24,6 +30,7 @@ echo '<!doctype html>
     
  <!-- Latest compiled and minified bootstrap stylesheet -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
   <!-- Latest compiled Material Design https://7b0257f4.ngrok.io -->    
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -53,6 +60,7 @@ echo '<!doctype html>
     </div>
         
     <form id="form1" method="post" action="add.php" enctype="multipart/form-data">
+
     <div id="MainContainer"> 
         <div id="NameTimeContainer">
             <div id="Name">  
@@ -61,6 +69,7 @@ echo '<!doctype html>
             </div>
             <br>
         </div>
+
     <div id="qTopicContainer">
         <div id="qTopic">
             <p>Under the topic:</p>
@@ -68,7 +77,7 @@ echo '<!doctype html>
         <div id="qTopicSelect">
             <input id="text-to-add" type="text" value="New Topic">
 	    <button type="button" id="new-item">Add to dropdown</button>
-            <select id="professsion1" name="topic"  style="font-size:1vw;">';
+            <select id="Topsel" name="topic"  style="font-size:1vw;">';
                 $count = 1;
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   echo '<option value="' . $result['QTopic'] . '"> ' . $result['QTopic'] . ' </option >';
@@ -96,6 +105,7 @@ echo '<!doctype html>
     
         <div id="dynamicContentsText">
              <p style="text-align: center; font-size: 1.5vw;"><b>Type the question contents below</b></p>
+
              <p id="uploadQuestionText"><b>Upload an image for the question (optional):</b></p>
              <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
            
@@ -106,12 +116,16 @@ echo '<!doctype html>
     
         <div id="dynamicContentsMultiChoice">
              <p id="uploadQuestionText"><b>Upload an image for the question (optional):</b></p>
+
              <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
+
              <div>
                  <textarea id="QText" form="form1" name="QText" id="commemt2" rows="4"></textarea>
              </div>
+
              <br>
              <div id="multiQuestionChoiceCont" style="text-align: center; font-size: 1.5vw;">
+
                  A <textarea form="form1" name="question[]" rows="1" cols="12" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  B <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>
              </div><br>
@@ -123,12 +137,17 @@ echo '<!doctype html>
     
        <div id="dynamicContentsTrueFalse">
                 <p id="uploadQuestionText"><b>Upload an image for the question (optional):</b></p>
+
                 <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
+
                 <p style="text-align: center; font-size: 1.5vw;"><b>Type the question contents below</b></p>
+
                 <div>
                  <textarea id="QText" form="form1" name="QText" id="commemt3" rows="4"></textarea>
                 </div>
+
        </div>
+
     <div id="AnswerContainer"> 
             <p id="AnswerText"><b>Upload the answer via an image/PDF or type below:</b></p>
             <input id="UploadAnswer" type="file" name="questionimg" accept="image/*">
@@ -179,21 +198,26 @@ echo '<!doctype html>
   <!-- javascript -->
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
   <script type="text/javascript">
 	$(document).ready(function () {
 	    $("#new-item").click(function() {
 	        console.log($("#text-to-add").val());
-	        $("select").append( "<option>" + $("#text-to-add").val() + "</option>" );
+	        $("#Topsel").append( "<option>" + $("#text-to-add").val() + "</option>" );
 	    });
 	});
+
 $("input[id=\"UploadQuestion\"]").change(function (e) {
 	var $this = $(this).val().split("\\\").pop();
 	$("p#uploadQuestionText").html("<b>Upload an image for the question (optional):</b> "+$this);
 });
+
 $("input[id=\"UploadAnswer\"]").change(function (e) {
 	var $this = $(this).val().split("\\\").pop();
 	$("p#AnswerText").html("<b>Upload the answer via an image/PDF or type below:</b> "+$this);
 });
+
+
     function myFunction() {
         if (document.getElementById("Typesel").value == "Text") {
             document.getElementById("AnswerContainer").style.display = "block";
@@ -210,6 +234,7 @@ $("input[id=\"UploadAnswer\"]").change(function (e) {
             document.getElementById("dynamicContentsText").style.display = "none";
             document.getElementById("dynamicContentsMultiChoice").style.display = "block";
             document.getElementById("dynamicContentsTrueFalse").style.display = "none";
+
         } else if (document.getElementById("Typesel").value == "TF"){
            document.getElementById("AnswerContainer").style.display = "none";
             document.getElementById("AnswerMultichoice").style.display = "none";
