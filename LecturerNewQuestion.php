@@ -4,11 +4,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
     echo '<script type="text/javascript"> window.location = "index.html" </script>';
 }
 
-$user = 'pomufoq_root';
-$password = 'password';
+$user = 'root';
+$password = '';
 
-$dsn = 'mysql:host=localhost;dbname=pomufoq_part4;charset=utf8mb4';
-
+$dsn = 'mysql:host=localhost;dbname=part4;charset=utf8mb4';
 $opt = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -16,7 +15,7 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 
-$stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions WHERE deleted='0'");
+$stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions");
 $results = $stmt->execute();
 
 
@@ -65,7 +64,8 @@ echo '<!doctype html>
         <div id="NameTimeContainer">
             <div id="Name">  
                 <p>Question name:</p>
-                <input id="NameTfield" type="text" name="name" style="text-align:center; color:black;">
+                <input id="NameTfield" type="text" name="name" 
+                style="text-align:center; color:black;">
             </div>
             <br>
         </div>
@@ -78,12 +78,12 @@ echo '<!doctype html>
             <input id="text-to-add" type="text" value="New Topic">
 	    <button type="button" id="new-item">Add to dropdown</button>
             <select id="professsion1" name="topic"  style="font-size:1vw;">';
-                $count = 1;
-                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                  echo '<option value="' . $result['QTopic'] . '"> ' . $result['QTopic'] . ' </option >';
-                  $count = $count +1;
-                }
-                echo '</select>
+$count = 1;
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo '<option value="' . $result['QTopic'] . '"> ' . $result['QTopic'] . ' </option >';
+    $count = $count +1;
+}
+echo '</select>
         </div>
     </div>
     
@@ -106,7 +106,7 @@ echo '<!doctype html>
         <div id="dynamicContentsText">
              <p style="text-align: center; font-size: 1.5vw;"><b>Type the question contents below</b></p>
 
-             <p id="uploadQuestionText"><b>Upload an image for the question (optional):</b></p>
+             <p id="uploadQuestionText"><b>Upload an image for the question (optional):</b></p>                    
              <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
            
              <div>
@@ -206,18 +206,7 @@ echo '<!doctype html>
 	        $("select").append( "<option>" + $("#text-to-add").val() + "</option>" );
 	    });
 	});
-
-$("input[id=\"UploadQuestion\"]").change(function (e) {
-	var $this = $(this).val().split("\\\").pop();
-	$("p#uploadQuestionText").html("<b>Upload an image for the question (optional):</b> "+$this);
-});
-
-$("input[id=\"UploadAnswer\"]").change(function (e) {
-	var $this = $(this).val().split("\\\").pop();
-	$("p#AnswerText").html("<b>Upload the answer via an image/PDF or type below:</b> "+$this);
-});
-
-
+	
     function myFunction() {
         if (document.getElementById("Typesel").value == "Text") {
             document.getElementById("AnswerContainer").style.display = "block";
