@@ -22,6 +22,7 @@ $stmt = $pdo->prepare("SELECT * FROM testsubmissions WHERE Username='$usr'");
 $results = $stmt->execute();
 
 //NOTE FOR AZUL -> IF results == NULL, then print out message in html!!!
+//Second NOTE FOR AZUL -> What the hell did I mean!??!
 
 
 echo '

@@ -23,7 +23,7 @@ if (!isset($_POST['Qname'])) {
 }
 
 $data = $_POST['Qname'];
-$stmt = $pdo->prepare("SELECT id, name, time FROM qtests WHERE active=TRUE AND pass='$data'");
+$stmt = $pdo->prepare("SELECT id, name, time FROM qtests WHERE active=TRUE AND pass='$data' AND deleted='0'");
 $results = $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $id = $result['id'];

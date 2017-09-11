@@ -16,7 +16,7 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 
-$stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions");
+$stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions WHERE deleted='0'");
 $results = $stmt->execute();
 
 

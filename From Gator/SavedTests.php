@@ -16,7 +16,7 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 
-$stmt = $pdo->prepare("SELECT * FROM qtests");
+$stmt = $pdo->prepare("SELECT * FROM qtests WHERE deleted='0'");
 $results = $stmt->execute();
 
 

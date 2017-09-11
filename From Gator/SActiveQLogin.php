@@ -16,7 +16,7 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 
-$stmt = $pdo->prepare("SELECT id FROM qtests WHERE active=TRUE LIMIT 1");
+$stmt = $pdo->prepare("SELECT id FROM qtests WHERE deleted='0' AND active=TRUE LIMIT 1");
 $results = $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 

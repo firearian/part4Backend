@@ -58,8 +58,8 @@ if ($data[0]==="edit"){
 
 }
 else {
-    $stmt = $pdo->prepare("INSERT INTO qtests (name, time, data, username, date) VALUES (:Name, :Time, :Data, :Username, :Date)");
-    $stmt->execute(['Name' => $nme, 'Time' => $tme, 'Data' => $json, 'Username' => $_SESSION['username'], 'Date' => date("Y:m:d:h:i:s")]);
+    $stmt = $pdo->prepare("INSERT INTO qtests (name, time, data, username, date, deleted) VALUES (:Name, :Time, :Data, :Username, :Date, :Del)");
+    $stmt->execute(['Name' => $nme, 'Time' => $tme, 'Data' => $json, 'Username' => $_SESSION['username'], 'Date' => date("Y:m:d:h:i:s"), 'Del' => false]);
     $id = $pdo->lastInsertId();
     foreach ($_POST['questions'] as $vals){
         $stmt = $pdo->prepare("INSERT INTO quizinters (qtestsid, questionid, deleted) VALUES (:qtid, :qid, :del)");

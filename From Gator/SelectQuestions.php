@@ -16,7 +16,7 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 
-$stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions");
+$stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions WHERE deleted='0'");
 $stmt->execute();
 
 echo '<!doctype html>
@@ -76,7 +76,7 @@ echo '<!doctype html>
             <div class="panel">
                     <table>';
                         $columndata = $result['QTopic'];
-                        $stmt1 = $pdo->prepare("SELECT * FROM questions WHERE QTopic='$columndata'");
+                        $stmt1 = $pdo->prepare("SELECT * FROM questions WHERE QTopic='$columndata' AND deleted='0'");
                         $results1 = $stmt1->execute();
 
                         while ($result1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {

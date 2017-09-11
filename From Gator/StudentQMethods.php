@@ -19,7 +19,7 @@ $pdo = new PDO($dsn, $user, $password, $opt);
 
 $data = $_REQUEST['id'];
 
-$stmt = $pdo->prepare("SELECT active FROM qtests WHERE id='$data'");
+$stmt = $pdo->prepare("SELECT active FROM qtests WHERE id='$data' AND deleted='0'");
 $stmt->execute();
 $answer = $stmt->fetch();
 

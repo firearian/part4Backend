@@ -69,7 +69,7 @@ echo '<!doctype html>
             $count = 1;
             for ($i = 0; $i < count($result); $i++){
                 $value = $result[$i]['Tid'];
-                $stmt = $pdo->prepare("SELECT * FROM qtests WHERE id='$value'");
+                $stmt = $pdo->prepare("SELECT * FROM qtests WHERE id='$value' AND deleted='0'");
                 $stmt->execute();
                 $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
             echo '

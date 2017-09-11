@@ -20,7 +20,7 @@ $pdo = new PDO($dsn, $user, $password, $opt);
 $data = explode("&", $_SERVER['QUERY_STRING']);
 
 if ($data[1]==="delete"){
-    $stmt = $pdo->prepare("DELETE FROM qtests WHERE id='$data[0]'");
+    $stmt = $pdo->prepare("UPDATE qtests SET deleted='1' WHERE id='$data[0]'");
     $results = $stmt->execute();
     $stmt = $pdo->prepare("UPDATE quizinters SET deleted = :Del WHERE qtestsid='$data[0]'");
     $stmt->execute(['Del' => true]);
@@ -28,7 +28,7 @@ if ($data[1]==="delete"){
 }
 
 if ($data[1]==="edit") {
-    $stmt = $pdo->prepare("SELECT * FROM qtests WHERE id='$data[0]'");
+    $stmt = $pdo->prepare("SELECT * FROM qtests WHERE id='$data[0]' AND deleted='0'");
     $stmt->execute();
     $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
     $json = json_decode($result1['data'], TRUE);
@@ -82,7 +82,7 @@ echo '<!doctype html>
       <!------------------- START OF TOPICS ------------------------>
       <div class="topics">';
 
-         $stmt1 = $pdo->prepare("SELECT DISTINCT QTopic FROM questions");
+         $stmt1 = $pdo->prepare("SELECT DISTINCT QTopic FROM questions WHERE deleted='0'");
          $stmt1->execute();
          $count = 1;
 
@@ -91,7 +91,7 @@ echo '<!doctype html>
          <div class="panel">
            <table>';
            $columndata = $result2['QTopic'];
-           $stmt = $pdo->prepare("SELECT * FROM questions WHERE QTopic='$columndata'");
+           $stmt = $pdo->prepare("SELECT * FROM questions WHERE QTopic='$columndata' AND deleted='0'");
            $stmt->execute();
 
          while ($result3 = $stmt->fetch(PDO::FETCH_ASSOC)) {

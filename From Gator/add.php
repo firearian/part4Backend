@@ -93,7 +93,7 @@ if ($data[0]==="edit"){
     $stmt->execute($array);
 //    $stmt->execute(['Name' => $nme, 'Time' => date("Y:m:d:h:i:s"), ($fileimage===true ? "'QImage' => $target_file1" : ""), 'QTop' => $top, 'answer' => $answer, 'QText' => $qtext, ($questionimage===true ? "'Aimage' => $target_file2" : ""), 'multi' => $qmc]);
 } else {
-    $stmt = $pdo->prepare("INSERT INTO questions (Qname, creation, Qtype, image, username, QTopic, answers, Qtext, Answerimage, Multi) VALUES (:qname, :creation, :qtype, :image, :username, :qtopic, :answers, :qtext, :aimage, :multi)");
+    $stmt = $pdo->prepare("INSERT INTO questions (Qname, creation, Qtype, image, username, QTopic, answers, Qtext, Answerimage, Multi, deleted) VALUES (:qname, :creation, :qtype, :image, :username, :qtopic, :answers, :qtext, :aimage, :multi, :Del)");
     $array['qname'] = $nme;
     $array['username'] = $_SESSION['username'];
     $array['creation'] = date("Y:m:d:h:i:s");
@@ -105,7 +105,7 @@ if ($data[0]==="edit"){
     $array['aimage'] = $target_file2;
     $array['multi'] = $qmc;
     $stmt->execute($array);
-//    $stmt->execute(['qname' => $nme, 'username' => $_SESSION['username'], 'creation' => date("Y:m:d:h:i:s"), 'qtype' => $typ, 'image' => $target_file1, 'qtopic' => $top, 'answers' => $answer, 'qtext' => $qtext, 'aimage' => $target_file2, 'multi' => $qmc]);
+//    $stmt->execute(['qname' => $nme, 'username' => $_SESSION['username'], 'creation' => date("Y:m:d:h:i:s"), 'qtype' => $typ, 'image' => $target_file1, 'qtopic' => $top, 'answers' => $answer, 'qtext' => $qtext, 'aimage' => $target_file2, 'multi' => $qmc, 'Del' => false]);
 }
 
 
