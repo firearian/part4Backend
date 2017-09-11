@@ -26,14 +26,14 @@ $data = explode("&", $_SERVER['QUERY_STRING']);
 
 //If deleting:
 if ($data[0]==="delete"){
-    $stmt = $pdo->prepare("DELETE FROM questions WHERE id='$data[1]'");
+    $stmt = $pdo->prepare("UPDATE questions SET deleted='1' WHERE id='$data[1]'");
     $results = $stmt->execute();
     header("Location: LecturerSavedQuestions.php");
     exit();
 }
 
 
-$stmt = $pdo->prepare("SELECT * FROM questions WHERE id='$data[1]'");
+$stmt = $pdo->prepare("SELECT * FROM questions WHERE id='$data[1]'AND deleted='0'");
 $result = $stmt->execute();
 $results = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -129,7 +129,7 @@ echo '<!doctype html>
               <div class="mdl-selectfield mdl-js-selectfield">
                 <select class="mdl-selectfield__select" id="professsion1" name="topic">';
         $count = 1;
-        $stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions");
+        $stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions WHERE deleted='0'");
         $results1 = $stmt->execute();
 
         while ($result1 = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -195,7 +195,7 @@ echo '<!doctype html>
               <div class="mdl-selectfield mdl-js-selectfield">
                 <select class="mdl-selectfield__select" id="professsion1" name="topic">';
         $count = 1;
-        $stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions");
+        $stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions WHERE deleted='0'");
         $results1 = $stmt->execute();
 
         while ($result1 = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -263,7 +263,7 @@ echo '<!doctype html>
               <div class="mdl-selectfield mdl-js-selectfield">
                 <select class="mdl-selectfield__select" id="professsion1" name="topic">';
         $count = 1;
-        $stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions");
+        $stmt = $pdo->prepare("SELECT DISTINCT QTopic FROM questions WHERE deleted='0'");
         $results1 = $stmt->execute();
 
         while ($result1 = $stmt->fetch(PDO::FETCH_ASSOC)) {
