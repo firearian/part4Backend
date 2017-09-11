@@ -1,0 +1,281 @@
+#title{
+    text-align: center;
+    font-size: 4vw;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 3%;
+    right: 1%;
+    font-size: 1.5vw;
+}
+
+.mdl-layout__header{
+    box-shadow: 0px 6px 8px grey;  
+}
+
+#MainContainer{
+    position: absolute;
+    top:12%;
+    width: 100%;
+}
+
+#NameContainer{
+    position: absolute;
+    top: 15%;
+    width: 100%;
+}
+
+#Name p{
+    position: relative;
+    width: 20%;
+    left: 20%;
+    font-weight: bold;
+    font-size: 2vw;
+}
+
+#NameTfield{
+    position: absolute;
+    top: 50%;
+    left: 17%;
+    width:20%;
+}
+
+#qTopicContainer{
+    position: absolute;
+    top: 15%;
+    width: 100%;
+}
+
+#qTopic p{
+    position: relative;
+    left: 42%;
+    font-weight: bold;
+    font-size: 2vw;
+}
+
+#qTopicSelect{
+    position: absolute;
+    top: 75%;
+    left: 44.5%;
+}
+
+#qTypeContainer{
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    
+}
+
+#qType p{
+    position: relative;
+    left: 65%;
+    font-weight: bold;
+    font-size: 2vw;
+}
+
+#qTypeSelect{
+    position: absolute;
+    top: 75%;
+    left: 68%;
+}
+
+#dynamicContentsText{
+    position: absolute;
+    top:100%;
+    left: 10%;
+    width: 80%;
+    padding: 0.5%;
+    background-color: lightgray;
+    box-shadow: 0px 8px 8px grey;
+}
+
+#dynamicContentsMultiChoice{
+    position: absolute;
+    top:100%;
+    left: 10%;
+    width: 80%;
+    padding: 0.5%;
+    background-color: lightgray;
+    box-shadow: 0px 8px 8px grey;
+    display: none;
+}
+
+#dynamicContentsTrueFalse{
+    position: absolute;
+    top:100%;
+    left: 10%;
+    width: 80%;
+    padding: 0.5%;
+    background-color: lightgray;
+    box-shadow: 0px 8px 8px grey;
+    display: none;
+}
+
+#uploadQuestionText{
+    position: relative;
+    margin: 0 auto;
+    font-size: 1.5vmin;
+}
+
+#UploadQuestion{
+    height: 0;
+    width: 0;
+}
+
+#UploadQuestionLabel {
+    position: relative;
+    margin: 0 auto;
+    width: 10%;
+    height: 6%;
+    font-size: 1vw;
+    text-align: center;
+    border: 1px solid #cccccc;
+    font-family:arial;
+    color: white;
+    background-color: darkblue;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#QText{
+   width: 100%; 
+   padding: 1%;
+}
+
+#AnswerContainer{
+    position: absolute;
+    top: 520%;
+    left: 10%;
+    border: 1px solid black;
+    width: 80%;
+    padding: 0.5%;
+    background-color:greenyellow;
+    box-shadow: 0px 8px 8px grey;
+}
+#Answer{
+   width: 100%; 
+   padding: 1%;
+}
+
+#AnswerText{
+    position: relative;
+    margin: 0 auto;
+    font-size: 1.5vmin;
+    
+}
+
+#AnswerSelect{
+    position: absolute;
+    top: 18%;
+    left: 41%;
+}
+
+#AnswerTextBox{
+    position: absolute;
+    top: 35%;
+    left: 0.5%;
+}
+
+#AnswerMultichoice{
+    position: absolute;
+    top: 520%;
+    left: 10%;
+    border: 1px solid black;
+    width: 80%;
+    padding: 0.5%;
+    background-color:greenyellow;
+    box-shadow: 0px 8px 8px grey;
+    display: none;
+}
+
+#MultiCtable{
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 100%;
+    align-content: center;
+   box-shadow: 0px 2px 2px grey; 
+}
+
+#AnswerTrueFalse{
+    position: absolute;
+    top: 520%;
+    left: 10%;
+    border: 1px solid black;
+    width: 80%;
+    padding: 0.5%;
+    background-color:greenyellow;
+    box-shadow: 0px 8px 8px grey;
+    display: none;
+}
+
+#False{
+    height: 0;
+    width: 0;
+}
+
+#FalseLabel {
+    position: absolute;
+    top: 0%;
+    left: 65%;
+    border: 1px solid #cccccc;
+    padding: 0.25% 3%;
+    font-family:arial;
+    background-color: lightgrey;
+}
+
+FalseLabel:focus{
+    background:yellow;
+}
+
+#UploadAnswer{
+    height: 0;
+    width: 0;
+}
+
+#UploadAnswerLabel {
+    position: relative;
+    margin: 0 auto;
+    width: 10%;
+    height: 12%;
+    font-size: 1vw;
+    text-align: center;
+    border: 1px solid #cccccc;
+    font-family:arial;
+    color: white;
+    background-color: darkblue;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#TrueFalseButton {
+    position: relative;
+    width: 100%;
+    background-color:lightblue;
+    border-radius:4px;
+    border:1px solid black;
+    text-align:center;
+    padding:1% 1%;
+}
+
+#TrueFalseButton input {
+    height: 0%;
+    width: 0%;
+    display: none;
+}
+
+#TrueFalseButton input:checked + span {
+    background-color:red;
+    color:white;
+}
+
+#buttonsContainer{
+    position: absolute;
+    top: 800%;
+    left: 25%;
+    width: 50%;
+}
+
+.mdl-button {
+    position: relative;
+    display: block;
+    margin: auto;

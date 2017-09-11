@@ -1,0 +1,120 @@
+#title{
+    text-align: center;
+    font-size: 4vw;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 3%;
+    right: 1%;
+    font-size: 1.5vw;
+}
+
+.mdl-layout__header{
+    box-shadow: 0px 6px 8px grey;  
+}
+
+
+#loginTag{
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 20%;
+    height:10%;
+    box-shadow: 0px 3px 2px grey;
+}
+
+#loginTag p{
+    position: relative;
+    text-align: center;
+    font-size: 5vmin;
+    
+}
+
+#manuleTimeContainer{
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 20%;
+    height:7%;
+    padding: 2px;
+    box-shadow: 0px 3px 2px grey;
+}
+
+#manuleTimeContainer p{
+    position: relative;
+    text-align: center;
+    font-size: 2vmin;
+}
+
+#minutesBox{
+    position: relative;
+    left: 10%;
+    width: 40%;
+}
+#setManuleTime{
+    position: relative;
+    left: 10%;
+    width: 40%;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#clock{
+    position: relative;
+    display: block;
+    left: 30%;
+    width: 100%;
+}
+
+#clock img{
+    box-shadow: 0px 6px 8px grey;
+}
+
+#startStopCont{
+     position: relative;
+    display: block;
+     margin: auto;
+   
+}
+
+
+#startButton{
+    position: relative;
+    left: 40%;
+    width: 10%;
+    min-width: 10%;
+    font-size: 50%;
+    box-shadow: 0px 6px 8px grey;
+}
+
+#stopButton{
+    position: relative;
+    left: 40%;
+    width: 10%;
+    min-width: 10%;
+    font-size: 50%;
+    box-shadow: 0px 6px 8px grey;
+}
+
+#dynamicanswers{
+    position: relative;
+    display: block;
+    margin: auto;
+    left: 15%;
+}
+
+#testTable{
+    width: 70%;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#testTable td{
+    border-style: solid;
+    width: 33%;
+    border-width: 1px;
+}
+
+tr:nth-child(even){
+    background-color: beige;
+}
