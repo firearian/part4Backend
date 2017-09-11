@@ -240,9 +240,6 @@ function reset (){
     clearInterval(ttt);
 }
 
-
-
-
 function getSrc(digit,index){
     return dg[(Math.floor(digit/index)%10)].src;
 }
@@ -251,6 +248,25 @@ window.onload=function() {
     dotime();
     tt = setInterval(dotime, 10);
 }
+
+
+function warning() {
+    $.get("onleave.php?on&' . $data . '");
+    timeout = setTimeout(function() {
+	$.get("onleave.php?off&' . $data . '");
+    }, 1000);
+    return "You are leaving the page";
+}
+
+function noTimeout() {
+    clearTimeout(timeout);
+}
+
+window.onbeforeunload = warning;
+window.unload = noTimeout;
+
+
+
 </script>    
     
 </body>
