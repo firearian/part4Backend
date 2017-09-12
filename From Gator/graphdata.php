@@ -38,7 +38,7 @@ if ($method=="userinfo"){
         $result1 = $stmt1->execute();
         $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
         $text = $result1['name'] . " on " . $result['createtime'];
-        $answer[(string)$text] = $result['Correct'];
+        $answer[(string)$text] = ($result['Correct']*100);
     }
 } elseif ($method=="testinfo"){
     $stmt = $pdo->prepare("SELECT DISTINCT Correct FROM testsubmissions WHERE Tid='$data'");
@@ -46,7 +46,7 @@ if ($method=="userinfo"){
     $percentagevalues = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     for ($i = 0; $i < sizeof($percentagevalues); $i++){
-        $answer[(string)$percentagevalues[$i]['Correct']] = 0;
+        $answer[(string)($percentagevalues[$i]['Correct']*100)."%"] = 0;
     }
 
     $stmt = $pdo->prepare("SELECT id, Correct FROM testsubmissions WHERE Tid='$data'");
@@ -55,7 +55,7 @@ if ($method=="userinfo"){
     while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         for ($i = 0; $i < sizeof($percentagevalues); $i++){
             if ($result['Correct'] == $percentagevalues[$i]['Correct']){
-                $answer[(string)$percentagevalues[$i]['Correct']]++;
+                $answer[(string)($percentagevalues[$i]['Correct']*100)."%"]++;
             }
         }
     }
