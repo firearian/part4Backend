@@ -23,10 +23,11 @@ if (!isset($_POST['Qname'])) {
 }
 
 $data = $_POST['Qname'];
-$stmt = $pdo->prepare("SELECT id, name, time FROM qtests WHERE active=TRUE AND pass='$data' AND deleted='0'");
+$stmt = $pdo->prepare("SELECT id, name, time, temp FROM qtests WHERE active=TRUE AND pass='$data'");
 $results = $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $id = $result['id'];
+$tempID = $result['temp'];
 $time = $result['time'];
 $name = $result['name'];
 
@@ -80,7 +81,7 @@ echo '<!doctype html>
 
 
   <div id= MainContainer>   
-  <form method="post" action="answer.php?' . $id . '" enctype="multipart/form-data">
+  <form method="post" action="answer.php?' . $id . '&'. $tempID .'" enctype="multipart/form-data">
 
     <div class="Questions">';
 

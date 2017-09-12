@@ -28,5 +28,19 @@ if ($data[0]==="active") {
     $stmt->execute(['actives' => false]);
 }
 
+if ($data[3]==="start"){
+    $stmt = $pdo->prepare("INSERT INTO testintermediate (createtime, Tid) VALUES (:times, :id)");
+    $array['times'] = date("Y:m:d:h:i:s");
+    $array['id'] = $data[1];
+    $stmt->execute($array);
+    $date = $array['times'];
+    $stmt = $pdo->prepare("SELECT tempTestid FROM testintermediate WHERE createtime='$date'");
+    $results = $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt = $pdo->prepare("UPDATE qtests SET temp = :temporaries WHERE id='$data[1]'");
+    $stmt->execute(['temporaries' => $result['tempTestid']]);
+}
+
+
 
 ?>

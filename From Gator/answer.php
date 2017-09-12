@@ -27,7 +27,7 @@ $pdo = new PDO($dsn, $user, $password, $opt);
 //}
 
 $times = date("Y:m:d:h:i:s");
-$data = $_SERVER['QUERY_STRING'];
+$data = explode("&", $_SERVER['QUERY_STRING']);
 $size = sizeof($_POST['Answer']);
 //$_POST['Answer'][0][key($_POST['Answer'][0])]
 //for ($i = 0; $i < $size; $i++){
@@ -53,14 +53,20 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 }
 
-$stmt = $pdo->prepare("INSERT INTO testsubmissions (Tid, Username, Submission, Correct) VALUES (:tid, :username, :times, :correct)");
-$stmt->execute(['username' => $_SESSION['username'], 'times' => $times, 'tid' => $data, 'correct' => ($nright/$totalqs)]);
+if (($nright==0)or($totalqs==0)){
+    $correct = 0;
+}else {
+    $correct = $nright/$totalqs;
+}
+
+$stmt = $pdo->prepare("INSERT INTO testsubmissions (Tid, Username, Submission, Correct, tempTid) VALUES (:tid, :username, :times, :correct, :temp)");
+$stmt->execute(['username' => $_SESSION['username'], 'times' => $times, 'tid' => $data[0], 'correct' => $correct, 'temp' => $data[1]]);
 reset($_POST['Answer']);
 
 
 foreach (array_values($_POST['Answer']) as $value) {
     $stmt = $pdo->prepare("INSERT INTO answers (Qid, Tid, username, answer) VALUES (:qid, :tid, :username, :answers)");
-    $stmt->execute(['username' => $_SESSION['username'], 'qid' => key($_POST['Answer']), 'tid' => $data, 'answers' => $value]);
+    $stmt->execute(['username' => $_SESSION['username'], 'qid' => key($_POST['Answer']), 'tid' => $data[0], 'answers' => $value]);
     next($_POST['Answer']);
 }
 

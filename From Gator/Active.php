@@ -30,10 +30,6 @@ for ($i = 0; $i < 5; $i++) {
     $id .= $characters[$rand];
 }
 
-$stmt = $pdo->prepare("UPDATE qtests SET active = :actives, pass = :ids  WHERE id='$data'");
-$stmt->execute(['actives' => 1, 'ids' => $id]);
-
-
 echo '
 <!doctype html>
 
@@ -145,6 +141,7 @@ var mn = d % 60;
 var se = 0;
 var ansdata;
 var rowid = 0;
+var initstart = true;
 
 function settime (){
     d = document.getElementById("minutesBox").value;
@@ -209,7 +206,12 @@ function realtime() {
 }
 
 function activate() {
-    $.get("ActiveMethods.php?active&' . $data . '&'. $id .'");
+    if (initstart==false){
+        $.get("ActiveMethods.php?active&' . $data . '&'. $id .'");
+    } else {
+        $.get("ActiveMethods.php?active&' . $data . '&'. $id .'&start");
+        initstart = false;
+    }
 }
     
 
@@ -264,7 +266,6 @@ function noTimeout() {
 
 window.onbeforeunload = warning;
 window.unload = noTimeout;
-
 
 
 </script>    
