@@ -33,7 +33,7 @@ $size = sizeof($_POST['Answer']);
 //for ($i = 0; $i < $size; $i++){
 
 
-$stmt = $pdo->prepare("SELECT quizinters.id, quizinters.questionid, quizinters.deleted, questions.answers FROM quizinters INNER JOIN questions ON quizinters.questionid=questions.id WHERE quizinters.qtestsid='$data'");
+$stmt = $pdo->prepare("SELECT quizinters.id, quizinters.questionid, quizinters.deleted, questions.answers FROM quizinters INNER JOIN questions ON quizinters.questionid=questions.id WHERE quizinters.qtestsid='$data[0]'");
 $stmt->execute();
 $pass = true;
 $totalqs = 0;
