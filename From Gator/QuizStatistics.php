@@ -22,7 +22,7 @@ echo '<!doctype html>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Class Average</title>
+    <title>Quiz Statistics</title>
  <!-- Latest compiled and minified bootstrap stylesheet -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
@@ -41,7 +41,7 @@ echo '<!doctype html>
         <header class="mdl-layout__header">
             <!-- Title -->
             <br>
-            <p id="title">Class Average</p>
+            <p id="title">Quiz Statistics</p>
             <!-- Add spacer, to align navigation to the right -->
             <p id="LoggedInAs"> You are logged in as ' . $_SESSION['username'] . '</p>
         </header>
@@ -66,17 +66,17 @@ echo '<!doctype html>
                     <select class="Namesel" id="Namesel" name="name" onchange="drawgraph()">
                     <option value=""></option>';
 
-            $count = 1;
-            for ($i = 0; $i < count($result); $i++){
-                $value = $result[$i]['Tid'];
-                $stmt = $pdo->prepare("SELECT * FROM qtests WHERE id='$value'");
-                $stmt->execute();
-                $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo '
+$count = 1;
+for ($i = 0; $i < count($result); $i++){
+    $value = $result[$i]['Tid'];
+    $stmt = $pdo->prepare("SELECT * FROM qtests WHERE id='$value'");
+    $stmt->execute();
+    $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+    echo '
                         <option value="' . $value . '">' . $result2['name'] . '</option>';
-                        $count++;
-            }
-                        echo '</select>
+    $count++;
+}
+echo '</select>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@ function drawgraph(){
     console.log("hello");
     $.ajax({
         url: "graphdata.php",
-        data: {Tid: $("#Namesel").val()},
+        data: {Tid: $("#Namesel").val(), method: "testinfo"},
         dataType: "json",
         success: function(ans) {
               $("#graph").empty();
@@ -118,7 +118,6 @@ function drawgraph(){
                 keys.push(Object.keys(ans)[i]);
                 console.log("Mew");
                 console.log(Object.keys(ans)[i]);
-//                values.push(ans.(Object.keys(ans)[i]));
             }
             console.log(keys);
             console.log(Object.values(ans));

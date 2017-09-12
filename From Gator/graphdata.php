@@ -59,6 +59,21 @@ if ($method=="userinfo"){
             }
         }
     }
+} elseif ($method=="questioninfo"){
+    $data = $_REQUEST['Qid'];
+    $stmt = $pdo->prepare("SELECT answers.id, answers.Qid, answers.Tid, answers.Username, answers.answer, questions.Qname, questions.id, questions.answers FROM questions INNER JOIN
+answers ON answers.Qid=questions.id WHERE questions.Qname='$data'");
+    $results = $stmt->execute();
+    $answer['Correct'] = 0;
+    $answer['Incorrect'] = 0;
+
+    while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if ($result['answer']==$result['answers']){
+            $answer['Correct']++;
+        } else {
+            $answer['Incorrect']++;
+        }
+    }
 }
 
 

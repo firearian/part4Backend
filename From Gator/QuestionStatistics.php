@@ -12,7 +12,7 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 
-$stmt = $pdo->prepare("SELECT DISTINCT Tid FROM testsubmissions");
+$stmt = $pdo->prepare("SELECT DISTINCT Qname FROM questions");
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -60,23 +60,18 @@ echo '<!doctype html>
 
     <div id="TestContainer">
         <div id="TestName">
-            <p>Select the Question\'s name you want to compare:</p>
+            <p>Quiz\'s name you want to compare:</p>
             <div id="TestSelect">
                 <div class="mdl-selectfield mdl-js-selectfield">
                     <select class="Namesel" id="Namesel" name="name" onchange="drawgraph()">
                     <option value=""></option>';
 
-            $count = 1;
-            for ($i = 0; $i < count($result); $i++){
-                $value = $result[$i]['Tid'];
-                $stmt = $pdo->prepare("SELECT * FROM qtests WHERE id='$value' AND deleted='0'");
-                $stmt->execute();
-                $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo '
-                        <option value="' . $value . '">' . $result2['name'] . '</option>';
-                        $count++;
-            }
-                        echo '</select>
+for ($i = 0; $i < count($result); $i++){
+    $value = $result[$i]['Qname'];
+    echo '
+                        <option value="' . $value . '">' . $value . '</option>';
+}
+echo '</select>
                 </div>
             </div>
         </div>
@@ -105,7 +100,7 @@ function drawgraph(){
     console.log("hello");
     $.ajax({
         url: "graphdata.php",
-        data: {Tid: $("#Namesel").val()},
+        data: {Qid: $("#Namesel").val(), method: "questioninfo"},
         dataType: "json",
         success: function(ans) {
               $("#graph").empty();
@@ -118,7 +113,6 @@ function drawgraph(){
                 keys.push(Object.keys(ans)[i]);
                 console.log("Mew");
                 console.log(Object.keys(ans)[i]);
-//                values.push(ans.(Object.keys(ans)[i]));
             }
             console.log(keys);
             console.log(Object.values(ans));

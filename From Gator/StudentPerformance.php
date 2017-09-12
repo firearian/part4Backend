@@ -22,7 +22,7 @@ echo '<!doctype html>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Student Performance</title>
+    <title>Student Statistics</title>
  <!-- Latest compiled and minified bootstrap stylesheet -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
@@ -41,7 +41,7 @@ echo '<!doctype html>
         <header class="mdl-layout__header">
             <!-- Title -->
             <br>
-            <p id="title">Student Performance</p>
+            <p id="title">Student Statistics</p>
             <!-- Add spacer, to align navigation to the right -->
             <p id="LoggedInAs"> You are logged in as ' . $_SESSION['username'] . '</p>
         </header>
