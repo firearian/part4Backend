@@ -80,7 +80,7 @@ echo '</select>
 
     <br>
 
-   <div id="graph" style="position: relative; height:40vh; width:80vw">
+   <div id="graph" style="position: relative; height:40vh; width:70vw">
      <canvas id="graphanswers" responsive="true"></canvas>
    </div>
 
@@ -117,19 +117,53 @@ function drawgraph(){
             console.log(keys);
             console.log(Object.values(ans));
             var ctx = document.getElementById("graphanswers");
+            Chart.defaults.global.defaultFontSize = 12;
             chartgraph = new Chart(ctx, {
                 type: "bar",
                 data: {
                     labels: keys, //names from ans
-                    datasets: [{
-                        label: "Answer percentages",
-                        backgroundColor: \'rgba(228, 247, 17, 0.6)\',
-                        data: Object.values(ans)//values //details from ans
-                    }]
+                    datasets: [
+                        {
+                            label: "Answers",
+                            backgroundColor: \'rgba(33, 150, 243, 0.4)\',
+                            borderColor: \'rgba(21, 101, 192, 0.6)\',
+                            borderWidth: 2,
+                            borderSkipped: "bottom",
+                            hoverBackgroundColor: \'rgba(33, 150, 243, 0.7)\',
+                            data: Object.values(ans)
+                        }
+                    ]
                 },
                     options: {
+                        legend: {
+                                position: "right",
+                            labels: {
+                                // This more specific font property overrides the global property
+                                fontSize: 16,
+                                fontStyle: "bold"
+                            }
+                        },
                         scales: {
                             yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Number of Answers",
+                                    fontSize: 15,
+                                    fontStyle: "bold",
+                                    padding: 2,
+                                },
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Nature of Answer",
+                                    fontSize: 15,
+                                    fontStyle: "bold",
+                                    padding: 0,
+                                },
                                 ticks: {
                                     beginAtZero:true
                                 }
@@ -138,6 +172,7 @@ function drawgraph(){
                     }
 
             });
+
 
 
 
