@@ -18,12 +18,12 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $password, $opt);
 
-$data = $_REQUEST['username'];
 $answer = array();
 $count = 0;
 $method = $_REQUEST['method'];
 
 if ($method=="userinfo"){
+    $data = $_REQUEST['username'];
     $stmt = $pdo->prepare("SELECT * FROM testsubmissions WHERE Username='$data'");
     $results = $stmt->execute();
     $percentagevalues = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -37,10 +37,12 @@ if ($method=="userinfo"){
         $stmt1 = $pdo->prepare("SELECT name FROM qtests WHERE id='$id'");
         $result1 = $stmt1->execute();
         $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-        $text = $result1['name'] . " on " . $result['createtime'];
+        $text = "\"" . $result1['name'] . "\"" . " on " . $result['createtime'];
         $answer[(string)$text] = ($result['Correct']*100);
     }
+    ksort($answer,SORT_STRING);
 } elseif ($method=="testinfo"){
+    $data = $_REQUEST['Tid'];
     $stmt = $pdo->prepare("SELECT DISTINCT Correct FROM testsubmissions WHERE Tid='$data'");
     $results = $stmt->execute();
     $percentagevalues = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -59,6 +61,7 @@ if ($method=="userinfo"){
             }
         }
     }
+    ksort($answer,SORT_NUMERIC);
 } elseif ($method=="questioninfo"){
     $data = $_REQUEST['Qid'];
     $stmt = $pdo->prepare("SELECT answers.id, answers.Qid, answers.Tid, answers.Username, answers.answer, questions.Qname, questions.id, questions.answers FROM questions INNER JOIN

@@ -26,7 +26,7 @@ echo '<!doctype html>
  <!-- Latest compiled and minified bootstrap stylesheet -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-  <!-- Latest compiled Material Design https://7b0257f4.ngrok.io -->    
+  <!-- Latest compiled Material Design https://7b0257f4.ngrok.io -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 
@@ -80,7 +80,7 @@ echo '<!doctype html>
 
     <br>
 
-   <div id="graph" style="position: relative; height:40vh; width:80vw">
+   <div id="graph" style="position: relative; height:40vh; width:70vw">
      <canvas id="graphanswers" responsive="true"></canvas>
    </div>
 
@@ -122,15 +122,48 @@ function drawgraph(){
                 type: "bar",
                 data: {
                     labels: keys, //names from ans
-                    datasets: [{
-                        label: "Answer percentages",
-                        backgroundColor: \'rgba(228, 247, 17, 0.6)\',
-                        data: Object.values(ans)//values //details from ans
-                    }]
+                    datasets: [
+                        {
+                            label: "Score",
+                            backgroundColor: \'rgba(33, 150, 243, 0.4)\',
+                            borderColor: \'rgba(21, 101, 192, 0.6)\',
+                            borderWidth: 2,
+                            borderSkipped: "bottom",
+                            hoverBackgroundColor: \'rgba(33, 150, 243, 0.7)\',
+                            data: Object.values(ans)
+                        }
+                    ]
                 },
                     options: {
+                        legend: {
+                                position: "right",
+                            labels: {
+                                // This more specific font property overrides the global property
+                                fontSize: 16,
+                                fontStyle: "bold"
+                            }
+                        },
                         scales: {
                             yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Achieved Score (%)",
+                                    fontSize: 15,
+                                    fontStyle: "bold",
+                                    padding: 2,
+                                },
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Name and Date of Quiz",
+                                    fontSize: 15,
+                                    fontStyle: "bold",
+                                    padding: 0,
+                                },
                                 ticks: {
                                     beginAtZero:true
                                 }
