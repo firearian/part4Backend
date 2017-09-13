@@ -55,7 +55,8 @@ canvas {
 #graph {
     display: table;
     margin:0 auto;
-    margin-top: 10%;
+    margin-top: 7%;
+    margin-bottom: 3%;
     width: 90%;
-    background-color: Beige;
+    background-color: white;
 }
