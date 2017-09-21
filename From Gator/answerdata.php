@@ -19,8 +19,12 @@ $data = $_REQUEST['info'];
 $answer = array();
 $count = 0;
 
-$stmt = $pdo->prepare("SELECT Username, Submission, Correct FROM testsubmissions WHERE Tid='$data'");
+$stmt = $pdo->prepare("SELECT Username, Submission, Correct FROM testsubmissions WHERE TempTid='$data'");
 $results = $stmt->execute();
+
+$stmt1 = $pdo->prepare("SELECT createtime FROM testintermediate WHERE tempTestid='$data'");
+$results1 = $stmt1->execute();
+$result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
 //<script type="text/javascript" src="Active.js"></script>
 
 $answer['html'] = "        <table id=\"testTable\">
@@ -31,9 +35,16 @@ $answer['html'] = "        <table id=\"testTable\">
             </tr>
 ";
 while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $now = date_create_from_format("Y-m-d h:i:s", $result1['createtime']);
+    $now = $now->getTimestamp() ;
+    $then = date_create_from_format("Y-m-d h:i:s", $result['Submission']);
+    $then = $then->getTimestamp();
+    $sum = abs($then - $now)/60;
+	
+
     $answer['html'] .= "<tr>";
     $answer['html'] .=  "<td align=\"middle\">" . $result['Username'] . "</td>";
-    $answer['html'] .=  "<td align=\"middle\">" . $result['Submission'] . "</td>";
+    $answer['html'] .=  "<td align=\"middle\">" . $sum . " minutes</td>";
     $answer['html'] .=  "<td align=\"middle\">" . $result['Correct']*100 . "</td>";
     $answer['html'] .=  "</tr>";
     $count++;

@@ -44,8 +44,7 @@ if ($data[3]==="start"){
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt = $pdo->prepare("UPDATE qtests SET temp = :temporaries WHERE id='$data[1]'");
     $stmt->execute(['temporaries' => $result['tempTestid']]);
+    
+    echo $result['tempTestid'];
 }
-
-
-
 ?>

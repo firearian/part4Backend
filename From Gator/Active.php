@@ -147,6 +147,7 @@ var se = 0;
 var ansdata;
 var rowid = 0;
 var initstart = true;
+var tempTid = 0;
 
 function settime (){
     d = document.getElementById("minutesBox").value;
@@ -173,7 +174,7 @@ function dotime() {
 function realtime() {
     $.ajax({
         url: "answerdata.php",
-        data: {info:' . $data . ', row: rowid},
+        data: {info: tempTid, row: rowid},
         dataType: "json",
         success: function(ans) {
             if (ans.html != ""){
@@ -214,7 +215,10 @@ function activate() {
     if (initstart==false){
         $.get("ActiveMethods.php?active&' . $data . '&'. $id .'");
     } else {
-        $.get("ActiveMethods.php?active&' . $data . '&'. $id .'&start");
+        $.get("ActiveMethods.php?active&' . $data . '&'. $id .'&start", function(data){
+        	console.log(data);
+        	tempTid = data;
+        });
         initstart = false;
     }
 }
