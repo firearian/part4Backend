@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['status'] == "l") {} else {
         echo '<script type="text/javascript"> window.location = "index.html" </script>';
 }
+date_default_timezone_set('Pacific/Auckland');
 
 echo '<html lang="en">
 <head>
@@ -17,6 +18,7 @@ echo '<html lang="en">
   <!-- Latest compiled Material Design https://7b0257f4.ngrok.io -->    
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+
     
   <link rel="stylesheet" href="LecturerMM.css">  
 
@@ -42,37 +44,36 @@ echo '<html lang="en">
     </div>
 
 
-
     <div id="buttonsContainer">    
-        <a href="SelectQuestions.php">
-        <button class="mdl-button mdl-js-button" type="submit">
-        Create Test
+        <a href="SelectQuestions.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
+        Create Quiz
         </button>
         </a>
     <br>    
-        <a href="SavedTests.php">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
-        Saved Tests
+        <a href="SavedTests.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
+        Saved Quizzes
         </button>
         </a>
     <br>      
 
-        <a href="LecturerNewQuestion.php">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="LecturerNewQuestion.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         New Question
         </button>
         </a>
     <br>            
 
-        <a href="LecturerSavedQuestions.php" >
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="LecturerSavedQuestions.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Saved Questions
         </button>
         </a>
     <br>
 
-        <a href="LecturerStatistics.php" >
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="LecturerStatistics.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Statistics
         </button>
         </a>

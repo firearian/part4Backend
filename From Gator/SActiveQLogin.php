@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['status'] == "s") {} else {
         echo '<script type="text/javascript"> window.location = "index.html" </script>';
 }
+date_default_timezone_set('Pacific/Auckland');
 
 $user = 'pomufoq_root';
 $password = 'password';
@@ -92,7 +93,7 @@ function page(){
     console.log("here");
     }
     else {
-        document.getElementById("QuizText").innerHTML = "<div id=\"QuizFound\"><h1>Active quiz not found!</h1><p>Please wait till your lecturer publishes a Quiz.</p></div>";
+        document.getElementById("QuizText").innerHTML = "<div id=\"QuizFound\"><h1>Active quiz not found!</h1><p style=\"font-size: 1.7vw;\">Please wait till your lecturer publishes a Quiz.</p></div>";
     console.log("there");
     }
 }

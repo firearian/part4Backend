@@ -1,7 +1,12 @@
 <?php
 session_start();
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['status'] == "l") {} else {
+    echo '<script type="text/javascript"> window.location = "index.html" </script>';
+}
+
 $user = 'pomufoq_root';
 $password = 'password';
+date_default_timezone_set('Pacific/Auckland');
 
 $dsn = 'mysql:host=localhost;dbname=pomufoq_part4;charset=utf8mb4';
 

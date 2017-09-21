@@ -31,7 +31,7 @@
             <br>
             <p id="title">Statistics</p>
             <!-- Add spacer, to align navigation to the right -->
-            <p id="LoggedInAs"> You are logged in as</p>
+            <p id="LoggedInAs"> You are logged in as Joel</p>
         </header>
 
         <div class="mdl-layout__drawer">
@@ -43,35 +43,35 @@
     </div>
 
   <div id="buttonsContainer">    
-        <a href="StudentPerformance.php">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="StudentPerformance.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Student's performance
         </button>
         </a>
     <br>    
-        <a href="QuizStatistics.php">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="QuizStatistics.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Quiz Statistics
         </button>
         </a>
     <br>      
 
-        <a href="QuestionStatistics.php">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="QuestionStatistics.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Question Statistics
         </button>
         </a>
     <br>            
 
-        <a href="CompareQuizzes.php" >
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="CompareQuizzes.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Compare Quizzes
         </button>
         </a>
     <br>  
       
-        <a href="LecturerFastestAnswers.php" >
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="LecturerFastestAnswers.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Fastest Answers
         </button>
         </a>

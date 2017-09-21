@@ -5,6 +5,11 @@
  * Date: 21/07/2017
  * Time: 11:00 PM
  */
+session_start();
+
+date_default_timezone_set('Pacific/Auckland');
+
+
 $user = 'pomufoq_root';
 $password = 'password';
 

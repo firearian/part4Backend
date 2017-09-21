@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['status'] == "s") {} else {
         echo '<script type="text/javascript"> window.location = "index.html" </script>';
 }
+date_default_timezone_set('Pacific/Auckland');
 
 echo '<!doctype html>
 
@@ -46,8 +47,8 @@ echo '<!doctype html>
 
 
      <div id=buttonsContainer>
-        <a href="SActiveQLogin.php">
-        <button class="mdl-button mdl-js-button" type="submit">
+        <a href="SActiveQLogin.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Active Quizzes
         </button>
         </a>
@@ -55,24 +56,24 @@ echo '<!doctype html>
     
     <br>
     
-        <a href="SAsk.php">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="SAsk.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Ask the lecturer
         </button>
         </a>
     
     <br>
     
-        <a href="SAnswers.php">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="SAnswers.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Your past answers
         </button>
         </a>
     
     <br>
     
-        <a href="LecturerStatistics.php">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+        <a href="LecturerStatistics.php" style="text-decoration:none;">
+        <button class="waves-effect waves-light btn" type="submit">
         Statistics
         </button>
         </a>

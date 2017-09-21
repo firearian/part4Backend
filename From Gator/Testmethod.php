@@ -4,6 +4,7 @@ session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['status'] == "l") {} else {
     echo '<script type="text/javascript"> window.location = "index.html" </script>';
 }
+date_default_timezone_set('Pacific/Auckland');
 
 $user = 'pomufoq_root';
 $password = 'password';
@@ -113,7 +114,7 @@ echo '<!doctype html>
         $count = $count + 1;
     }
     echo '<br><br><br><br><br>
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+    <button class="waves-effect waves-light btn" type="submit">
         Confirm and Save Quiz
     </button>
     </form>

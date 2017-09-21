@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['status'] == "l") {} else {
     echo '<script type="text/javascript"> window.location = "index.html" </script>';
 }
+date_default_timezone_set('Pacific/Auckland');
 
 $user = 'pomufoq_root';
 $password = 'password';
@@ -81,7 +82,7 @@ echo '
                         if ($result1['Qtype']=="MC"){
                             echo '<td id="Border">' . $result1['answers'] . '</td>';
                         } elseif ($result1['Qtype']=="Text"){
-                            echo '<td id="Border">' . (!($result1['Answerimage']=="") ? '<img id="setWidth" src="' . $result1['Answerimage'] . '" 
+                            echo '<td id="Border">' . (!($result1['Answerimage']=="") ? '<img id="setWidth" alt="A Caption" src="' . $result1['Answerimage'] . '" 
                             />' : $result1['answers'] ) . '</td>';
                         } else{
                             echo '<td id="Border">' . $result1['answers'] . '</td>';
@@ -100,84 +101,40 @@ echo '
 $count = $count+1;
 }
 echo '</div>
+      <!-- The Modal -->
+     <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01">
+     <div id="caption"></div>
+     </div>
+ </div>    
 
-         /* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("setWidth");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
 }
 
-/* Modal Content (Image) */
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-}
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-/* Caption of Modal Image (Image Text) - Same Width as the Image */
-#caption {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-    text-align: center;
-    color: #ccc;
-    padding: 10px 0;
-    height: 150px;
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
 }
+</script>
 
-/* Add Animation - Zoom in the Modal */
-.modal-content, #caption { 
-    -webkit-animation-name: zoom;
-    -webkit-animation-duration: 0.6s;
-    animation-name: zoom;
-    animation-duration: 0.6s;
-}
-
-@-webkit-keyframes zoom {
-    from {-webkit-transform:scale(0)} 
-    to {-webkit-transform:scale(1)}
-}
-
-@keyframes zoom {
-    from {transform:scale(0)} 
-    to {transform:scale(1)}
-}
-
-/* The Close Button */
-.close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-    .modal-content {
-        width: 100%;
-    }
-}   
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> 
+        
+  <script src="/SelectQuestions.js"></script>   
 
 </body>
 </html>

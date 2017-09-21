@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['status'] == "l") {} else {
     echo '<script type="text/javascript"> window.location = "index.html" </script>';
 }
+date_default_timezone_set('Pacific/Auckland');
 
 $user = 'pomufoq_root';
 $password = 'password';
@@ -62,7 +63,7 @@ echo '<!doctype html>
     <form id="form1" method="post" action="add.php" enctype="multipart/form-data">
 
     <div id="MainContainer"> 
-        <div id="NameTimeContainer">
+        <div id="NameContainer">
             <div id="Name">  
                 <p>Question name:</p>
                 <input id="NameTfield" type="text" name="name" style="text-align:center; color:black;">
@@ -75,9 +76,9 @@ echo '<!doctype html>
             <p>Under the topic:</p>
         </div>
         <div id="qTopicSelect">
-            <input id="text-to-add" type="text" value="New Topic">
-	    <button type="button" id="new-item">Add to dropdown</button>
-            <select id="Topsel" name="topic"  style="font-size:1vw;">';
+            <input id="text-to-add" type="text" value="New Topic (optional)" style="font-size:1.4vmin;text-align:center; color:black;">
+	    <button type="button" id="new-item" style="font-size:1.4vmin;">Add to topics</button>
+            <select id="Topsel" name="topic"  style="font-size:1.4vmax;">';
                 $count = 1;
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   echo '<option value="' . $result['QTopic'] . '"> ' . $result['QTopic'] . ' </option >';
@@ -92,7 +93,7 @@ echo '<!doctype html>
                 <p>Question type:</p>
             </div>
             <div id="qTypeSelect">
-                    <select id="Typesel" name="type" style="width: 100%; font-size: 1vw;" onchange="myFunction()">
+                    <select id="Typesel" name="type" style=" font-size: 1.4vmax;" onchange="myFunction()">
                       <option value="Text">Text</option>
                       <option value="MC">Multi choice</option>
                       <option value="TF">True/False</option>   
@@ -105,25 +106,20 @@ echo '<!doctype html>
     
         <div id="dynamicContentsText">
              <p style="text-align: center; font-size: 1.5vw;"><b>Type the question contents below</b></p>
-
-             <p id="uploadQuestionText"><b>Upload an image for the question (optional):</b></p>
-             <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
-           
              <div>
-                 <textarea id="QText" form="form1" name="QText" id="commemt1" rows="4"></textarea>
+                 <textarea id="QText" form="form1" name="QText" id="commemt1" rows="8"></textarea>
+             </div> 
+             <div>
+             <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
+             <p id="uploadQuestionText"><b>Upload an image for the question (optional): &nbsp;</b></p>
              </div> 
         </div>
     
         <div id="dynamicContentsMultiChoice">
-             <p id="uploadQuestionText"><b>Upload an image for the question (optional):</b></p>
-
-             <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
-
+             <p style="text-align: center; font-size: 1.5vw;"><b>Type the question contents below</b></p>
              <div>
                  <textarea id="QText" form="form1" name="QText" id="commemt2" rows="4"></textarea>
              </div>
-
-             <br>
              <div id="multiQuestionChoiceCont" style="text-align: center; font-size: 1.5vw;">
 
                  A <textarea form="form1" name="question[]" rows="1" cols="12" ></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -133,27 +129,26 @@ echo '<!doctype html>
                  C <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  D <textarea form="form1" name="question[]" rows="1" cols="12"></textarea>
              </div>
+             <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
+             <p id="uploadQuestionText"><b>Upload an image for the question (optional): &nbsp;</b></p>
        </div>
     
        <div id="dynamicContentsTrueFalse">
-                <p id="uploadQuestionText"><b>Upload an image for the question (optional):</b></p>
-
-                <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
-
                 <p style="text-align: center; font-size: 1.5vw;"><b>Type the question contents below</b></p>
-
                 <div>
-                 <textarea id="QText" form="form1" name="QText" id="commemt3" rows="4"></textarea>
+                 <textarea id="QText" form="form1" name="QText" id="commemt3" rows="8"></textarea>
                 </div>
-
+                <label id="UploadQuestionLabel" for="UploadQuestion">Choose file</label>
+                <p id="uploadQuestionText"><b>Upload an image for the question (optional): &nbsp;</b></p>
        </div>
 
     <div id="AnswerContainer"> 
-            <p id="AnswerText"><b>Upload the answer via an image/PDF or type below:</b></p>
-            <input id="UploadAnswer" type="file" name="questionimg" accept="image/*">
-            <label id="UploadAnswerLabel" for="UploadAnswer">Choose file</label> 
-        <br>
+
+            <p style="text-align: center;font-size: 1.5vw;"><b> Type the correct answer below</b></p> 
             <textarea id="Answer" name="Answer" form="form1" rows="4"></textarea>
+            <input id="UploadAnswer" type="file" name="questionimg" accept="image/*">
+            <label id="UploadAnswerLabel" for="UploadAnswer">Choose file</label>
+            <p id="AnswerText"><b>Upload the answer via an image/PDF or type below: &nbsp;</b></p>
     </div>
     
     <div id="AnswerMultichoice">
@@ -187,7 +182,7 @@ echo '<!doctype html>
     </div>
     
     <div id="buttonsContainer">  
-    <button id="submitButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+    <button id="submitButton" class="waves-effect waves-light btn" type="submit">
      Submit
     </button>
     </div> 

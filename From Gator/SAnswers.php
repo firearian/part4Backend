@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['status'] == "s") {} else {
     echo '<script type="text/javascript"> window.location = "index.html" </script>';
 }
+date_default_timezone_set('Pacific/Auckland');
 
 $user = 'pomufoq_root';
 $password = 'password';
@@ -28,8 +29,10 @@ $results = $stmt->execute();
 echo '
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Saved Tests</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Past questions</title>
     
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -37,78 +40,78 @@ echo '
   <!-- Latest compiled Material Design -->    
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> 
-     
-    
-  <link rel="stylesheet" href="SavedTests.css">
+
+  <link rel="stylesheet" href="SAnswers.css">
+
 </head>
 
 <body>
     
-    <!-----------------------------NAVBAR ----------------------->
-    <!-- Always shows a header, even in smaller screens. -->
+   <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title"> SAVED TESTS </span>
+          <br>
+          <p id="title">Past questions</p>     
           <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
-          <!-- Navigation. We hide it in small screens. -->
-          <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <p id="LoggedInAs"> You are logged in as ' . $_SESSION['username'] . '</p>
-          </nav>
-        </div>
-      </header>
+          <p id="LoggedInAs"> You are logged in as ' . $_SESSION['username'] . '</p>
+     </header>
+        
       <div class="mdl-layout__drawer">
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="StudentMM.php">Main Menu</a>   
+          <a class="mdl-navigation__link" href="StudentMM.php">Main Menu</a>    
           <a class="mdl-navigation__link" href="logout.php">Logout</a>
         </nav>
       </div>
     </div>
-   
-<div class="contains">';
 
+    <!------------------- START OF TOPICS ------------------------>
+    <div id= MainContainer>     
+      <div class="topics">';
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
     $testid = $result['Tid'];
     $stmt1 = $pdo->prepare("SELECT * FROM answers WHERE Tid='$testid'");
     $result1 = $stmt1->execute();
+    $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
     $stmt2 = $pdo->prepare("SELECT * FROM qtests WHERE id='$testid'");
     $result2 = $stmt2->execute();
     $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-    echo'<button type="button" class="accordion">' . $result2['name'] . ' ---------- ' . $result1['Submission'] . '</button>
-                <div class="panel">
-                        <table>
-                              <tr>
-                                <th>Test Question:</th>
-                                <th>Test Answer</th>
-                                <th>Your Answer</th>
-                              </tr>';
-//    $typ = json_decode($result2['data']);
+    echo'<button type="button" class="accordion">' . $result2['name'] . ' created on ' . $result2['date'] . '</button>
+           <div class="panel">
+             <table>
+               <tr>
+                 <th id="Border">Question</th>
+                 <th id="Border">Answer</th>
+                 <th id="Border">Your Answer</th>
+               </tr>';
+//     $typ = json_decode($result2['data']);
     while ($result1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
         $qid = $result1['Qid'];
         $stmt3 = $pdo->prepare("SELECT * FROM questions WHERE id='$qid'");
         $stmt3->execute();
         $result3 = $stmt3->fetch(PDO::FETCH_ASSOC);
         echo '<tr>
-                <td id="TestQ"> ' . $result3['Qname'] . ' </td>';
-                if ($result3['Qtype']=="MC"){
-                    echo '<td id="Border">' . unserialize(base64_decode($result3['Multi']))[$result3['answers']-1] . '</td>';
-                } elseif ($result3['Qtype']=="Text"){
-                    echo '<td id="Border">' . (!($result3['Answerimage']=="") ? '<img align="center" src="' . $result3['Answerimage'] . '" class="img-responsive"/>' : $result3['answers'] ) . '</td>';
-                } else{
-                    echo '<td id="Border">' . $result3['answers'] . '</td>';
-                }
-                echo '<td> ' . $result1['answer'] . ' </td>
+                          <td id="Border"> ' . $result3['Qname'] . ' </td>';
+        if ($result3['Qtype']=="MC"){
+            echo '<td id="Border">' . $result3['answers'] . '</td>';
+        } elseif ($result3['Qtype']=="Text"){
+            echo '<td id="Border">' . (!($result3['Answerimage']=="") ? '<img align="center" src="' . $result3['Answerimage'] . '" class="img-responsive"/>' : $result3['answers'] ) . '</td>';
+        } else{
+            echo '<td id="Border">' . $result3['answers'] . '</td>';
+        }
+        echo '<td id="Border"> ' . $result1['answer'] . ' </td>
               </tr>';
-    }
+    } echo '</table></div>';
 }
 
-echo '</table>
-</div>
-</div>
+echo '
+
+//         </div>
+       </div>
+     </div>
+
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>     
+  <script src="/SelectQuestions.js"></script>  
 
 </body>
 </html>';

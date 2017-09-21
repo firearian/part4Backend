@@ -6,6 +6,7 @@
  * Time: 12:06 PM
  */
 session_start();
+date_default_timezone_set('Pacific/Auckland');
 
 echo '<html lang="en">
 <head>

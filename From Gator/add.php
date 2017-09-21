@@ -6,6 +6,8 @@
  * Time: 12:06 PM
  */
 session_start();
+date_default_timezone_set('Pacific/Auckland');
+
 $user = 'pomufoq_root';
 $password = 'password';
 
@@ -104,6 +106,7 @@ if ($data[0]==="edit"){
     $array['qtext'] = $qtext;
     $array['aimage'] = $target_file2;
     $array['multi'] = $qmc;
+    $array['Del'] = 0;
     $stmt->execute($array);
 //    $stmt->execute(['qname' => $nme, 'username' => $_SESSION['username'], 'creation' => date("Y:m:d:h:i:s"), 'qtype' => $typ, 'image' => $target_file1, 'qtopic' => $top, 'answers' => $answer, 'qtext' => $qtext, 'aimage' => $target_file2, 'multi' => $qmc, 'Del' => false]);
 }
