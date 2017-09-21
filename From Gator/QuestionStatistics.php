@@ -49,20 +49,15 @@ echo '<!doctype html>
         <div class="mdl-layout__drawer">
             <nav class="mdl-navigation">
                 <a class="mdl-navigation__link" href="LectureMM.php">Main Menu</a>
+                <a class="mdl-navigation__link" href="LecturerStatistics.php">Statistics</a>
                 <a class="mdl-navigation__link" href="logout.php">Logout</a>
             </nav>
         </div>
     </div>
 
-    <br>
-    <br>
-    <br>
-
     <div id="TestContainer">
         <div id="TestName">
             <p>Quiz\'s name you want to compare:</p>
-            <div id="TestSelect">
-                <div class="mdl-selectfield mdl-js-selectfield">
                     <select class="Namesel" id="Namesel" name="name" onchange="drawgraph()">
                     <option value=""></option>';
 
@@ -72,17 +67,12 @@ for ($i = 0; $i < count($result); $i++){
                         <option value="' . $value . '">' . $value . '</option>';
 }
 echo '</select>
-                </div>
-            </div>
+
         </div>
-        <br>
+        <div id="graph" style="position: relative; height:40vh; width:70vw">
+         <canvas id="graphanswers" responsive="true"></canvas>
+        </div>
     </div>
-
-    <br>
-
-   <div id="graph" style="position: relative; height:40vh; width:70vw">
-     <canvas id="graphanswers" responsive="true"></canvas>
-   </div>
 
 
 </body>

@@ -77,6 +77,64 @@ answers ON answers.Qid=questions.id WHERE questions.Qname='$data'");
             $answer['Incorrect']++;
         }
     }
+} elseif ($method=="compare"){
+    $temp = array();
+    $data1 = $_REQUEST['Tid1'];
+    $data2 = $_REQUEST['Tid2'];
+
+    $stmt = $pdo->prepare("SELECT DISTINCT Correct FROM testsubmissions WHERE Tid='$data1'");
+    $results = $stmt->execute();
+    $percentagevalues = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    for ($i = 0; $i < sizeof($percentagevalues); $i++){
+        $temp[(string)($percentagevalues[$i]['Correct']*100)."%"] = 0;
+    }
+
+    $stmt = $pdo->prepare("SELECT id, Correct FROM testsubmissions WHERE Tid='$data1'");
+    $results = $stmt->execute();
+
+    while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        for ($i = 0; $i < sizeof($percentagevalues); $i++){
+            if ($result['Correct'] == $percentagevalues[$i]['Correct']){
+                $temp[(string)($percentagevalues[$i]['Correct']*100)."%"]++;
+            }
+        }
+    }
+    ksort($temp,SORT_NUMERIC);
+    $answer[$data1] = $temp;
+
+    $stmt = $pdo->prepare("SELECT DISTINCT Correct FROM testsubmissions WHERE Tid='$data2'");
+    $results = $stmt->execute();
+    $percentagevalues = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    for ($i = 0; $i < sizeof($percentagevalues); $i++){
+        $temp[(string)($percentagevalues[$i]['Correct']*100)."%"] = 0;
+    }
+
+    $stmt = $pdo->prepare("SELECT id, Correct FROM testsubmissions WHERE Tid='$data2'");
+    $results = $stmt->execute();
+
+    while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        for ($i = 0; $i < sizeof($percentagevalues); $i++){
+            if ($result['Correct'] == $percentagevalues[$i]['Correct']){
+                $temp[(string)($percentagevalues[$i]['Correct']*100)."%"]++;
+            }
+        }
+    }
+    ksort($temp,SORT_NUMERIC);
+    $answer[$data2] = $temp;
+
+
+    $stmt = $pdo->prepare("SELECT DISTINCT Correct FROM testsubmissions WHERE Tid IN ('$data1', '$data2')");
+    $results = $stmt->execute();
+    $percentagevalues = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    for ($i = 0; $i < sizeof($percentagevalues); $i++){
+        $temp[(string)($percentagevalues[$i]['Correct']*100)."%"] = 0;
+    }
+
+    ksort($temp,SORT_NUMERIC);
+    $answer["keys"] = $temp;
 }
 
 

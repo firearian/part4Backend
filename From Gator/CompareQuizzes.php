@@ -49,21 +49,17 @@ echo '<!doctype html>
         <div class="mdl-layout__drawer">
             <nav class="mdl-navigation">
                 <a class="mdl-navigation__link" href="LectureMM.php">Main Menu</a>
+                <a class="mdl-navigation__link" href="LecturerStatistics.php">Statistics</a>
                 <a class="mdl-navigation__link" href="logout.php">Logout</a>
             </nav>
         </div>
     </div>
 
-    <br>
-    <br>
-    <br>
-
+  <div id="TestContainer">
     <div id="Test1Container">
         <div id="TestName">
             <p>Select the name of the second quiz</p>
-            <div id="TestSelect">
-                <div class="mdl-selectfield mdl-js-selectfield">
-                    <select class="Namesel" id="Namesel" name="name" onchange="drawgraph()">
+                    <select class="Namesel" id="Namesel1" name="name"">
                     <option value=""></option>';
 
             $count = 1;
@@ -77,17 +73,13 @@ echo '<!doctype html>
                         $count++;
             }
                         echo '</select>
-                </div>
-            </div>
         </div>
     </div>
 
     <div id="Test2Container">
         <div id="TestName">
             <p>Select the name of the first quiz</p>
-            <div id="TestSelect">
-                <div class="mdl-selectfield mdl-js-selectfield">
-                    <select class="Namesel" id="Namesel" name="name" onchange="drawgraph()">
+                    <select class="Namesel" id="Namesel2" name="name"">
                     <option value=""></option>';
 
             $count = 1;
@@ -101,16 +93,15 @@ echo '<!doctype html>
                         $count++;
             }
                         echo '</select>
-                </div>
-            </div>
         </div>
     </div>
 
     <br>
 
-   <div id="graph" style="position: relative; height:40vh; width:80vw">
+   <div id="graph" style="position: relative; height:30vh; width:70vw">
      <canvas id="graphanswers" responsive="true"></canvas>
    </div>
+ </div>
 
 
 </body>
@@ -124,41 +115,83 @@ echo '<!doctype html>
 <script type="text/javascript">
 var chartgraph;
 
+
+$(".Namesel").change(function() {
+    console.log("Part 1 works");
+    if($("#Namesel2").val() && $("#Namesel1").val()){
+	console.log("Both parts work!!!");
+    	drawgraph();
+    }
+});
+
 function drawgraph(){
     console.log("hello");
     $.ajax({
         url: "graphdata.php",
-        data: {Tid: $("#Namesel").val()},
+        data: {Tid1: $("#Namesel1").val(), Tid2: $("#Namesel2").val(), method: "compare"},
         dataType: "json",
         success: function(ans) {
-              $("#graph").empty();
-              $("#graph").append("<canvas id=\\"graphanswers\\" responsive=\\"true\\"></canvas>");
-
-            console.log(ans);
+            $("#graph").empty();
+            $("#graph").append("<canvas id=\\"graphanswers\\" responsive=\\"true\\"></canvas>");
             var keys = [];
             var values = [];
             for (var i = 0; i < Object.keys(ans).length; i++){
                 keys.push(Object.keys(ans)[i]);
-                console.log("Mew");
-                console.log(Object.keys(ans)[i]);
-//                values.push(ans.(Object.keys(ans)[i]));
             }
-            console.log(keys);
-            console.log(Object.values(ans));
             var ctx = document.getElementById("graphanswers");
             chartgraph = new Chart(ctx, {
                 type: "bar",
                 data: {
-                    labels: keys, //names from ans
+                    labels: Object.keys(ans.keys), //names from ans
                     datasets: [{
-                        label: "Answer percentages",
-                        backgroundColor: \'rgba(228, 247, 17, 0.6)\',
-                        data: Object.values(ans)//values //details from ans
+                        label: "Quiz 1 Answer percentages",
+                        backgroundColor: \'rgba(33, 150, 243, 0.4)\',
+                        borderColor: \'rgba(21, 101, 192, 0.6)\',
+                        borderWidth: 2,
+                        borderSkipped: "bottom",
+                        hoverBackgroundColor: \'rgba(33, 150, 243, 0.7)\',
+                        data: Object.values(ans[Object.keys(ans)[0]])//values //details from ans
+                    },
+                    {
+                        label: "Quiz 2 Answer percentages",
+                        backgroundColor: \'rgba(103, 58, 183, 0.4)\',
+                        borderColor: \'rgba(69, 39, 160, 0.6)\',
+                        borderWidth: 2,
+                        borderSkipped: "bottom",
+                        hoverBackgroundColor: \'rgba(103, 58, 183, 0.7)\',
+                        data: Object.values(ans[Object.keys(ans)[1]])//values //details from ans
                     }]
                 },
                     options: {
+                        legend: {
+                                position: "right",
+                            labels: {
+                                // This more specific font property overrides the global property
+                                fontSize: 16,
+                                fontStyle: "bold"
+                            }
+                        },
                         scales: {
                             yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Number of Students",
+                                    fontSize: 15,
+                                    fontStyle: "bold",
+                                    padding: 2,
+                                },
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Quiz Score",
+                                    fontSize: 15,
+                                    fontStyle: "bold",
+                                    padding: 0,
+                                },
                                 ticks: {
                                     beginAtZero:true
                                 }
@@ -167,6 +200,7 @@ function drawgraph(){
                     }
 
             });
+
 
 
 

@@ -11,6 +11,7 @@
 }
 
 .mdl-layout__header{
+    background-color: #1a237e;
     box-shadow: 0px 6px 8px grey;  
 }
 
@@ -30,23 +31,21 @@
 button.accordion {
     position: relative;
     left: 5%;
-    background-color: lightgoldenrodyellow;
+    background-color: #ddd;
     color: black;
     cursor: pointer;
     padding: 18px;
     width: 90%;
     border: 0.1%;
-    border-color: lightgrey;
     text-align: left;
     outline: none;
     font-size: 15px;
     font-weight: bold;
     transition: 0.2s;
-    box-shadow: 0px 6px 4px grey;
 }
 
 button.accordion.active {
-    background-color: darkred;
+    background-color: #BBB;
     font-weight: bold;
     color: white;  
 }
@@ -110,4 +109,25 @@ table{
 
 #setWidth{
   width:100%;
+}
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
 }
