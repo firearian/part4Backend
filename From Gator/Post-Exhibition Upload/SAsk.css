@@ -1,0 +1,96 @@
+#title{
+    text-align: center;
+    font-size: 4vw;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 3%;
+    right: 1%;
+    font-size: 1.5vw;
+}
+
+.mdl-layout__header{
+    background-color: #1a237e;
+    box-shadow: 0px 6px 8px grey;  
+}
+
+#Container{
+    position: absolute;
+    top:12%;
+    width: 100%;
+    text-align: center;
+}
+
+#Name p{
+    position: relative;
+    text-align: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+
+#LecSel{
+    position: relative;
+    font-size: 1.5vw;
+}
+
+#AnswerContainer{
+    position: absolute;
+    top: 25%;
+    left: 2%;
+    width: 96%;
+    height: 61.5%;  
+    padding: 0.5%;
+    background-color:#f1f1f1;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#UploadAnswer{
+    height: 0;
+    width: 0;
+}
+
+#UploadAnswerLabel {
+    display:block;
+    float:right;
+    width: 10%;
+    height: 5%;
+    font-size: 1vw;
+    text-align: center;
+    border: 1px solid #cccccc;
+    font-family:arial;
+    color: white;
+    font-weight: bold;
+    background-color: #1565c0 ;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#AnswerText{
+    font-size: 1.5vmin;
+    display:block;
+    float:right;
+}
+
+#Answer{
+   width: 100%; 
+   padding: 1%;
+}
+
+.mdl-button {
+    position: absolute;
+    top: 90%;
+    left:25%;
+    width: 50%;
+    font-size:1.7vw;
+    color: white;
+    background-color: #1565c0 ;
+    font-weight: bold;
+    box-shadow: 0px 2px 2px grey;  
+}
+
+#UoaLogo {
+    position: absolute;
+    top: 92%;
+    left: 0.2%; 
+    height: 8%;
+}

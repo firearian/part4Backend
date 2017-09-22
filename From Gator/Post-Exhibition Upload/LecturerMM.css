@@ -1,0 +1,45 @@
+#title{
+    text-align: center;
+    font-size: 4vw;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 3%;
+    right: 1%;
+    font-size: 1.5vw;
+}
+
+.mdl-layout__header{
+    background-color: #1a237e;
+    box-shadow: 0px 6px 8px grey;  
+}
+
+#buttonsContainer{
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    width: 50%;
+    min-width:50%
+}
+
+.btn {
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 50%;
+    font-size:1.7vw;
+    color: white;
+    background-color: #1565c0 ;
+    font-weight: bold;
+    box-shadow: 0px 2px 2px grey;  
+
+}
+
+
+#UoaLogo {
+    position: absolute;
+    top: 92%;
+    left: 0.2%; 
+    height: 8%;
+}

@@ -1,0 +1,337 @@
+#title{
+    text-align: center;
+    font-size: 4vw;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 3%;
+    right: 1%;
+    font-size: 1.5vw;
+}
+
+.mdl-layout__header{
+    background-color: #1a237e;
+    box-shadow: 0px 6px 8px grey;  
+}
+
+#MainContainer{
+    position: absolute;
+    top:12%;
+    width: 100%;
+}
+
+#NameContainer{
+    position: absolute;
+    top: 15%;
+    left:0%;
+    width: 33.3%;
+}
+
+#Name p{
+    text-align:center; 
+    font-weight: bold;
+    font-size: 2vw;
+}
+
+#qNameSelect{
+   margin: auto;
+   width: 50%;
+   text-align: center;
+}
+
+#NameTfield{
+    z-index: 1;
+   position: relative;
+   display:inline-block;
+  vertical-align:middle;
+  font-size:1.4vmin;
+  text-align:center; 
+   color:black;
+  height: 30px;
+}
+
+#qTopicContainer{
+    position: absolute;
+    top: 15%;
+    width: 100%;
+}
+
+#qTopic p{
+    text-align:center; 
+    font-weight: bold;
+    font-size: 2vw;
+}
+
+#qTopicSelect{
+   margin: auto;
+   width: 50%;
+   text-align: center;
+}
+
+#text-to-add{
+   position: relative;
+   display:inline-block;
+  vertical-align:middle;
+  font-size:1.4vmin;
+  text-align:center; 
+   color:black;
+   height: 30px;
+   width: 20%;
+
+}
+
+#new-item{
+   position: relative;
+   display:inline-block;
+  color: white;
+  background-color:#1565c0 ;
+  vertical-align:middle;
+  font-size:1.4vmin;
+  text-align:center;
+  height: 30px;
+   width: 20%;
+}
+
+#Topsel{
+   display:inline-block;
+   vertical-align:middle;
+   font-size:1.4vmin;
+   text-align:center;
+      height: 30px;
+   width: 20%; 
+}
+
+#qTypeContainer{
+    position: absolute;
+    top: 15%;
+    right:0%;
+    width: 33.3%;   
+}
+
+#qType p{
+    text-align:center; 
+    font-weight: bold;
+    font-size: 2vw;
+}
+
+#qTypeSelect{
+   margin: auto;
+   width: 50%;
+   text-align: center;
+}
+
+#Typesel{
+   position: relative;
+   display:inline-block;
+  vertical-align:middle;
+  font-size:1.4vmin;
+  text-align:center; 
+   color:black;
+  height: 30px;
+}
+
+#dynamicContentsText{
+    position: absolute;
+    top:350%;
+    left: 2%;
+    width: 96%;
+    padding: 0.5%;
+    background-color: #f1f1f1;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#dynamicContentsMultiChoice{
+    position: absolute;
+    top:350%;
+    left: 2%;
+    width: 96%;
+    padding: 0.5%;
+    background-color: #f1f1f1;
+    box-shadow: 0px 2px 2px grey;
+    display: none;
+}
+
+#dynamicContentsTrueFalse{
+    position: absolute;
+    top:350%;
+    left: 2%;
+    width: 96%;
+    padding: 0.5%;
+    background-color: #f1f1f1;
+    box-shadow: 0px 2px 2px grey;
+    display: none;
+}
+
+#uploadQuestionText{
+    display:block;
+    float:right;
+    font-size: 1.5vmin;
+}
+
+#UploadQuestion{
+    height: 0;
+    width: 0;
+}
+
+#UploadQuestionLabel {
+    display:block;
+    float:right;
+    width: 10%;
+    height: 6%;
+    font-size: 1vw;
+    text-align: center;
+    border: 1px solid #cccccc;
+    font-family:arial;
+    color: white;
+    font-weight: bold;
+    background-color: #1565c0 ;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#QText{
+   width: 100%; 
+   padding: 1%;
+}
+
+#AnswerContainer{
+    position: absolute;
+    top: 1750%;
+    left: 2%;
+    width: 96%;
+    padding: 0.5%;
+    background-color:#e8f5e9 ;
+    box-shadow: 0px 2px 2px grey;
+}
+#Answer{
+   width: 100%; 
+   padding: 1%;
+}
+
+#AnswerText{
+    font-size: 1.5vmin;
+    display:block;
+    float:right;
+
+}
+
+#AnswerSelect{
+    position: absolute;
+    top: 18%;
+    left: 41%;
+}
+
+#AnswerTextBox{
+    position: absolute;
+    top: 35%;
+    left: 0.5%;
+}
+
+#AnswerMultichoice{
+    position: absolute;
+    top: 1750%;
+    left: 2%;
+    width: 96%;
+    padding: 0.5%;
+    background-color:#e8f5e9;
+    box-shadow: 0px 2px 2px grey;
+    display: none;
+}
+
+#MultiCtable{
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 100%;
+    align-content: center;
+    box-shadow: 0px 2px 2px grey; 
+}
+
+#AnswerTrueFalse{
+    position: absolute;
+    top: 1750%;
+    left: 2%;
+    width: 96%;
+    padding: 0.5%;
+    background-color:#e8f5e9;
+    box-shadow: 0px 2px 2px grey;
+    display: none;
+}
+
+#False{
+    height: 0;
+    width: 0;
+}
+
+#FalseLabel {
+    position: absolute;
+    top: 0%;
+    left: 65%;
+    border: 1px solid #cccccc;
+    padding: 0.25% 3%;
+    font-family:arial;
+    background-color: lightgrey;
+}
+
+FalseLabel:focus{
+    background:yellow;
+}
+
+#UploadAnswer{
+    height: 0;
+    width: 0;
+}
+
+#UploadAnswerLabel {
+    display:block;
+    float:right;
+    width: 10%;
+    height: 12%;
+    font-size: 1vw;
+    text-align: center;
+    border: 1px solid #cccccc;
+    font-family:arial;
+    color: white;
+    font-weight: bold;
+    background-color: #1565c0 ;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#TrueFalseButton {
+    position: relative;
+    width: 100%;
+    background-color:lightblue;
+    border-radius:4px;
+    border:1px solid black;
+    text-align:center;
+    padding:1% 1%;
+}
+
+#TrueFalseButton input {
+    height: 0%;
+    width: 0%;
+    display: none;
+}
+
+#TrueFalseButton input:checked + span {
+    background-color:red;
+    color:white;
+}
+
+#buttonsContainer{
+    position: absolute;
+    top: 2750%;
+    left: 25%;
+    width: 50%;
+}
+
+.btn {
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 50%;
+    font-size:1.7vw;
+    color: white;
+    background-color: #1565c0 ;
+    font-weight: bold;
+}

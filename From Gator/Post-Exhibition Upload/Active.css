@@ -1,0 +1,133 @@
+#title{
+    text-align: center;
+    font-size: 4vw;
+}
+
+#LoggedInAs {
+    position: absolute;
+    top: 3%;
+    right: 1%;
+    font-size: 1.5vw;
+}
+
+.mdl-layout__header{
+    background-color: #1a237e;
+    box-shadow: 0px 6px 8px grey;  
+}
+
+
+#loginTag{
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 20%;
+    height:10%;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#loginTag p{
+    position: relative;
+    text-align: center;
+    font-size: 5vmin;
+    
+}
+
+#manuleTimeContainer{
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 20%;
+    height:7%;
+    padding: 2px;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#manuleTimeContainer p{
+    position: relative;
+    text-align: center;
+    font-size: 2vmin;
+}
+
+#minutesBox{
+    position: relative;
+    left: 10%;
+    width: 40%;
+    font-size: 1vw;
+}
+
+
+#setManuleTime{
+    position: relative;
+    left: 10%;
+    width: 40%;
+    font-size: 1vw;
+    color: white;
+    background-color: #1565c0 ;
+}
+
+#clock{
+    position: relative;
+    display: block;
+    left: 30%;
+    width: 100%;
+}
+
+#clock img{
+    box-shadow: 0px 2px 2px grey;
+}
+
+#startStopCont{
+     position: relative;
+    display: block;
+     margin: auto;
+   
+}
+
+
+#startButton{
+    position: relative;
+    left: 40%;
+    width: 10%;
+    min-width: 10%;
+    font-size: 1vw;
+    box-shadow: 0px 2px 2px grey;
+}
+
+#stopButton{
+    position: relative;
+    left: 40%;
+    width: 10%;
+    min-width: 10%;
+    font-size: 1vw;
+    box-shadow: 0px 2px px grey;
+}
+
+#dynamicanswers{
+    position: relative;
+    display: block;
+    margin: auto;
+    left: 15%;
+}
+
+#testTable{
+    width: 70%;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#testTable td{
+    border-style: solid;
+    width: 33%;
+    border-width: 1px;
+}
+
+th{
+    background-color: #00bfa5 ;
+    border: 1px solid black;
+    color: white;
+    text-align:center;
+    padding: 5px;
+}
+
+tr:nth-child(even){background-color: #f5f5f5 }
+tr:nth-child(odd){background-color: white}
